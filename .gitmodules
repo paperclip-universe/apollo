@@ -1,0 +1,9 @@
+[submodule "apollo-libretro/apollo-binding-libretro/emsdk"]
+path = apollo-libretro/apollo-binding-libretro/emsdk
+url = https://github.com/emscripten-core/emsdk.git
+[submodule "apollo-libretro/apollo-binding-libretro-mgba/mgba"]
+path = apollo-libretro/apollo-binding-libretro-mgba/mgba
+url = https://github.com/libretro/mgba
+[submodule "apollo-libretro/apollo-binding-libretro/RetroArch"]
+path = apollo-libretro/apollo-binding-libretro/RetroArch
+url = https://github.com/libretro/RetroArch

@@ -1,0 +1,13 @@
+[package]
+name = "apollo-api"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+apollo-libretro-bindings = { version = "0.1.0", path = "../../apollo-libretro/apollo-libretro-bindings", optional = true }
+
+[features]
+default = ["libretro"]
+libretro = ["dep:apollo-libretro-bindings"]
