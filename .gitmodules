@@ -7,3 +7,6 @@ url = https://github.com/libretro/mgba
 [submodule "apollo-libretro/apollo-binding-libretro/RetroArch"]
 path = apollo-libretro/apollo-binding-libretro/RetroArch
 url = https://github.com/libretro/RetroArch
+[submodule "apollo-libretro/apollo-libretro-mgba/mgba"]
+	path = apollo-libretro/apollo-libretro-mgba/mgba
+	url = https://github.com/libretro/mgba
