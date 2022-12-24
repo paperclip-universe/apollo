@@ -6,13 +6,9 @@ edition = "2021"
 license = "Apache-2.0"
 
 [dependencies]
-libloading = "0.7.4"
+apollo-standard = { version = "0.1.0", path = "../../apollo-api/apollo-standard" }
 lazy_static = "1.3.0"
-libretro-sys = { git = "https://github.com/Sinono3/libretro-sys", branch = "variadic_printf" }
 libc = "0.2.122"
-image = { version = "0.24.5", optional = true }
+libloading = "0.7.4"
+libretro-sys = { git = "https://github.com/Sinono3/libretro-sys", branch = "variadic_printf" }
 printf-compat = "0.1.1"
-
-[features]
-default = ["use_image"]
-use_image = ["image"]

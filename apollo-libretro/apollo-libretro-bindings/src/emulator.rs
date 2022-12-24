@@ -1,16 +1,17 @@
-use crate::buttons::InputPort;
-use crate::error::*;
+use crate::{buttons::InputPort, error::*};
+use apollo_standard::{ApolloEmulator, ApolloMultiEmulator};
 use libc::c_char;
-use libloading::Library;
-use libloading::Symbol;
+use libloading::{Library, Symbol};
 use libretro_sys::*;
-use std::ffi::{c_void, CStr, CString};
-use std::fs::File;
-use std::io::Read;
-use std::marker::PhantomData;
-use std::panic;
-use std::path::{Path, PathBuf};
-use std::ptr;
+use std::{
+    ffi::{c_void, CStr, CString},
+    fs::File,
+    io::Read,
+    marker::PhantomData,
+    panic,
+    path::{Path, PathBuf},
+    ptr,
+};
 
 type NotSendSync = *const [u8; 0];
 
@@ -60,19 +61,111 @@ pub struct Emulator {
     system_av_info: SystemAvInfo,
 }
 
+pub struct MultiEmulator {}
+
 pub struct RetroSystemInfo {
     pub library_name: CString,
     pub extensions: CString,
 }
 
-impl Emulator {
-    pub fn create(core_path: &Path, rom_path: &Path) -> Emulator {
+fn create_core(core_path: &Path) -> (Box<Library>, CoreAPI) {
+    let suffix = if cfg!(target_os = "windows") {
+        "dll"
+    } else if cfg!(target_os = "macos") {
+        "dylib"
+    } else if cfg!(target_os = "linux") {
+        "so"
+    } else {
+        panic!("Unsupported platform")
+    };
+    let path: PathBuf = core_path.with_extension(suffix);
+    #[cfg(target_os = "linux")]
+    let library: Library = {
+        // Load library with `RTLD_NOW | RTLD_NODELETE` to fix a SIGSEGV
+        ::libloading::os::unix::Library::open(Some(path), 0x2 | 0x1000)
+            .unwrap()
+            .into()
+    };
+
+    #[cfg(not(target_os = "linux"))]
+    let library = unsafe { Library::new(path).unwrap() };
+    let dll = Box::new(library);
+
+    unsafe {
+        let retro_set_environment = *(dll.get(b"retro_set_environment").unwrap());
+        let retro_set_video_refresh = *(dll.get(b"retro_set_video_refresh").unwrap());
+        let retro_set_audio_sample = *(dll.get(b"retro_set_audio_sample").unwrap());
+        let retro_set_audio_sample_batch = *(dll.get(b"retro_set_audio_sample_batch").unwrap());
+        let retro_set_input_poll = *(dll.get(b"retro_set_input_poll").unwrap());
+        let retro_set_input_state = *(dll.get(b"retro_set_input_state").unwrap());
+        let retro_init = *(dll.get(b"retro_init").unwrap());
+        let retro_deinit = *(dll.get(b"retro_deinit").unwrap());
+        let retro_api_version = *(dll.get(b"retro_api_version").unwrap());
+        let retro_get_system_info = *(dll.get(b"retro_get_system_info").unwrap());
+        let retro_get_system_av_info = *(dll.get(b"retro_get_system_av_info").unwrap());
+        let retro_set_controller_port_device =
+            *(dll.get(b"retro_set_controller_port_device").unwrap());
+        let retro_reset = *(dll.get(b"retro_reset").unwrap());
+        let retro_run = *(dll.get(b"retro_run").unwrap());
+        let retro_serialize_size = *(dll.get(b"retro_serialize_size").unwrap());
+        let retro_serialize = *(dll.get(b"retro_serialize").unwrap());
+        let retro_unserialize = *(dll.get(b"retro_unserialize").unwrap());
+        let retro_cheat_reset = *(dll.get(b"retro_cheat_reset").unwrap());
+        let retro_cheat_set = *(dll.get(b"retro_cheat_set").unwrap());
+        let retro_load_game = *(dll.get(b"retro_load_game").unwrap());
+        let retro_load_game_special = *(dll.get(b"retro_load_game_special").unwrap());
+        let retro_unload_game = *(dll.get(b"retro_unload_game").unwrap());
+        let retro_get_region = *(dll.get(b"retro_get_region").unwrap());
+        let retro_get_memory_data = *(dll.get(b"retro_get_memory_data").unwrap());
+        let retro_get_memory_size = *(dll.get(b"retro_get_memory_size").unwrap());
+        let core = CoreAPI {
+            retro_set_environment,
+            retro_set_video_refresh,
+            retro_set_audio_sample,
+            retro_set_audio_sample_batch,
+            retro_set_input_poll,
+            retro_set_input_state,
+
+            retro_init,
+            retro_deinit,
+
+            retro_api_version,
+
+            retro_get_system_info,
+            retro_get_system_av_info,
+            retro_set_controller_port_device,
+
+            retro_reset,
+            retro_run,
+
+            retro_serialize_size,
+            retro_serialize,
+            retro_unserialize,
+
+            retro_cheat_reset,
+            retro_cheat_set,
+
+            retro_load_game,
+            retro_load_game_special,
+            retro_unload_game,
+
+            retro_get_region,
+            retro_get_memory_data,
+            retro_get_memory_size,
+        };
+        (dll, core)
+    }
+}
+
+impl ApolloMultiEmulator for MultiEmulator {
+    // FIXME Move some of this logic to Emulator::boot
+    fn create_emulator(core_path: &Path, rom_path: &Path) -> Emulator {
         unsafe {
             assert!(EMULATOR.is_null());
             assert!(CONTEXT.is_null());
         }
 
-        let (dll, core) = Self::create_core(core_path);
+        let (dll, core) = create_core(core_path);
 
         let emu = EmulatorCore {
             core_lib: dll,
@@ -160,9 +253,15 @@ impl Emulator {
             }
         }
     }
+}
 
+impl ApolloEmulator for Emulator {
+    fn boot(&self, _: &Path) {}
+}
+
+impl Emulator {
     pub fn create_for_system_info(core_path: &Path) -> RetroSystemInfo {
-        let (_, core) = Self::create_core(core_path);
+        let (_, core) = create_core(core_path);
         let mut system_info = SystemInfo {
             library_name: ptr::null(),
             library_version: ptr::null(),
@@ -179,95 +278,6 @@ impl Emulator {
                 library_name: to_cstring(system_info.library_name),
                 extensions: to_cstring(system_info.valid_extensions),
             }
-        }
-    }
-
-    fn create_core(core_path: &Path) -> (Box<Library>, CoreAPI) {
-        let suffix = if cfg!(target_os = "windows") {
-            "dll"
-        } else if cfg!(target_os = "macos") {
-            "dylib"
-        } else if cfg!(target_os = "linux") {
-            "so"
-        } else {
-            panic!("Unsupported platform")
-        };
-        let path: PathBuf = core_path.with_extension(suffix);
-        #[cfg(target_os = "linux")]
-        let library: Library = {
-            // Load library with `RTLD_NOW | RTLD_NODELETE` to fix a SIGSEGV
-            ::libloading::os::unix::Library::open(Some(path), 0x2 | 0x1000)
-                .unwrap()
-                .into()
-        };
-
-        #[cfg(not(target_os = "linux"))]
-        let library = unsafe { Library::new(path).unwrap() };
-        let dll = Box::new(library);
-
-        unsafe {
-            let retro_set_environment = *(dll.get(b"retro_set_environment").unwrap());
-            let retro_set_video_refresh = *(dll.get(b"retro_set_video_refresh").unwrap());
-            let retro_set_audio_sample = *(dll.get(b"retro_set_audio_sample").unwrap());
-            let retro_set_audio_sample_batch = *(dll.get(b"retro_set_audio_sample_batch").unwrap());
-            let retro_set_input_poll = *(dll.get(b"retro_set_input_poll").unwrap());
-            let retro_set_input_state = *(dll.get(b"retro_set_input_state").unwrap());
-            let retro_init = *(dll.get(b"retro_init").unwrap());
-            let retro_deinit = *(dll.get(b"retro_deinit").unwrap());
-            let retro_api_version = *(dll.get(b"retro_api_version").unwrap());
-            let retro_get_system_info = *(dll.get(b"retro_get_system_info").unwrap());
-            let retro_get_system_av_info = *(dll.get(b"retro_get_system_av_info").unwrap());
-            let retro_set_controller_port_device =
-                *(dll.get(b"retro_set_controller_port_device").unwrap());
-            let retro_reset = *(dll.get(b"retro_reset").unwrap());
-            let retro_run = *(dll.get(b"retro_run").unwrap());
-            let retro_serialize_size = *(dll.get(b"retro_serialize_size").unwrap());
-            let retro_serialize = *(dll.get(b"retro_serialize").unwrap());
-            let retro_unserialize = *(dll.get(b"retro_unserialize").unwrap());
-            let retro_cheat_reset = *(dll.get(b"retro_cheat_reset").unwrap());
-            let retro_cheat_set = *(dll.get(b"retro_cheat_set").unwrap());
-            let retro_load_game = *(dll.get(b"retro_load_game").unwrap());
-            let retro_load_game_special = *(dll.get(b"retro_load_game_special").unwrap());
-            let retro_unload_game = *(dll.get(b"retro_unload_game").unwrap());
-            let retro_get_region = *(dll.get(b"retro_get_region").unwrap());
-            let retro_get_memory_data = *(dll.get(b"retro_get_memory_data").unwrap());
-            let retro_get_memory_size = *(dll.get(b"retro_get_memory_size").unwrap());
-            let core = CoreAPI {
-                retro_set_environment,
-                retro_set_video_refresh,
-                retro_set_audio_sample,
-                retro_set_audio_sample_batch,
-                retro_set_input_poll,
-                retro_set_input_state,
-
-                retro_init,
-                retro_deinit,
-
-                retro_api_version,
-
-                retro_get_system_info,
-                retro_get_system_av_info,
-                retro_set_controller_port_device,
-
-                retro_reset,
-                retro_run,
-
-                retro_serialize_size,
-                retro_serialize,
-                retro_unserialize,
-
-                retro_cheat_reset,
-                retro_cheat_set,
-
-                retro_load_game,
-                retro_load_game_special,
-                retro_unload_game,
-
-                retro_get_region,
-                retro_get_memory_data,
-                retro_get_memory_size,
-            };
-            (dll, core)
         }
     }
 

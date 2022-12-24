@@ -1,9 +1,7 @@
 [package]
-name = "apollo-binding-libretro"
+name = "apollo-standard"
 version = "0.1.0"
 edition = "2021"
-
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-libretro-sys = "0.1.1"
