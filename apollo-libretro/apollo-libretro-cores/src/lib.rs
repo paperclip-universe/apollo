@@ -19,7 +19,7 @@ pub fn get_all() -> Vec<&'static str> {
         mgba_get_path,
     ];
 
-    FUNCTIONS.into_iter().map(|x| x()).flatten().collect()
+    FUNCTIONS.into_iter().filter_map(|x| x()).collect()
 }
 
 #[test]
