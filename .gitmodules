@@ -25,3 +25,6 @@ url = https://github.com/libretro/FreeChaF
 [submodule "apollo-libretro-cores/apollo-libretro-freeintv/FreeIntv"]
 path = apollo-libretro-cores/apollo-libretro-freeintv/FreeIntv
 url = https://github.com/libretro/FreeIntv
+[submodule "apollo-libretro-cores/apollo-libretro-mgba/mgba"]
+	path = apollo-libretro-cores/apollo-libretro-mgba/mgba
+	url = https://github.com/libretro/mgba
