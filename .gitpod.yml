@@ -3,5 +3,10 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
+  - init: cd emsdk
+    before: ./emsdk install latest
+    command: ./emsdk activate latest
+  - before: source "/workspace/apollo/emsdk/emsdk_env.sh"
+    command: echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
   - before: rustup default nightly && rustup component add rustfmt
     init: cargo build

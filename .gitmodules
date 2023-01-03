@@ -28,3 +28,6 @@ url = https://github.com/libretro/FreeIntv
 [submodule "apollo-libretro-cores/apollo-libretro-mgba/mgba"]
 	path = apollo-libretro-cores/apollo-libretro-mgba/mgba
 	url = https://github.com/libretro/mgba
+[submodule "emsdk"]
+	path = emsdk
+	url = https://github.com/emscripten-core/emsdk.git
