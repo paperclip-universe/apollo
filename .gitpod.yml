@@ -10,7 +10,7 @@ tasks:
       exit
     name: Install and setup Emscripten
     openMode: split-right
-    - init: |
+   - init: |
       git submodule update --init
       git submodule foreach git reset --hard
       gp sync-done submodule
