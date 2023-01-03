@@ -1,15 +1,9 @@
 [submodule "apollo-libretro/apollo-binding-libretro/emsdk"]
 path = apollo-libretro/apollo-binding-libretro/emsdk
 url = https://github.com/emscripten-core/emsdk.git
-[submodule "apollo-libretro/apollo-binding-libretro-mgba/mgba"]
-path = apollo-libretro/apollo-binding-libretro-mgba/mgba
-url = https://github.com/libretro/mgba
 [submodule "apollo-libretro/apollo-binding-libretro/RetroArch"]
 path = apollo-libretro/apollo-binding-libretro/RetroArch
 url = https://github.com/libretro/RetroArch
-[submodule "apollo-libretro/apollo-libretro-mgba/mgba"]
-path = apollo-libretro/apollo-libretro-mgba/mgba
-url = https://github.com/libretro/mgba
 [submodule "apollo-libretro-cores/apollo-libretro-a5200/a5200"]
 path = apollo-libretro-cores/apollo-libretro-a5200/a5200
 url = https://github.com/libretro/a5200
@@ -17,17 +11,17 @@ url = https://github.com/libretro/a5200
 path = apollo-libretro-cores/apollo-libretro-beetle-ngb/beetle-psx-libretro
 url = https://github.com/libretro/beetle-psx-libretro
 [submodule "apollo-libretro-cores/apollo-libretro-beetle-vb/beetle-vb-libretro"]
-	path = apollo-libretro-cores/apollo-libretro-beetle-vb/beetle-vb-libretro
-	url = https://github.com/libretro/beetle-vb-libretro
+path = apollo-libretro-cores/apollo-libretro-beetle-vb/beetle-vb-libretro
+url = https://github.com/libretro/beetle-vb-libretro
 [submodule "apollo-libretro-cores/apollo-libretro-beetle-psx/beetle-psx-libretro"]
-	path = apollo-libretro-cores/apollo-libretro-beetle-psx/beetle-psx-libretro
-	url = https://github.com/libretro/beetle-psx-libretro
+path = apollo-libretro-cores/apollo-libretro-beetle-psx/beetle-psx-libretro
+url = https://github.com/libretro/beetle-psx-libretro
 [submodule "apollo-libretro-cores/apollo-libretro-beetle-wswan/beetle-wswan-libretro"]
-	path = apollo-libretro-cores/apollo-libretro-beetle-wswan/beetle-wswan-libretro
-	url = https://github.com/libretro/beetle-wswan-libretro
+path = apollo-libretro-cores/apollo-libretro-beetle-wswan/beetle-wswan-libretro
+url = https://github.com/libretro/beetle-wswan-libretro
 [submodule "apollo-libretro-cores/apollo-libretro-freechaf/FreeChaF"]
-	path = apollo-libretro-cores/apollo-libretro-freechaf/FreeChaF
-	url = https://github.com/libretro/FreeChaF
+path = apollo-libretro-cores/apollo-libretro-freechaf/FreeChaF
+url = https://github.com/libretro/FreeChaF
 [submodule "apollo-libretro-cores/apollo-libretro-freeintv/FreeIntv"]
-	path = apollo-libretro-cores/apollo-libretro-freeintv/FreeIntv
-	url = https://github.com/libretro/FreeIntv
+path = apollo-libretro-cores/apollo-libretro-freeintv/FreeIntv
+url = https://github.com/libretro/FreeIntv
