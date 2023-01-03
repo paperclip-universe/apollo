@@ -87,10 +87,11 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .expect("The core did not build successfully!");
         if !out.status.success() {
             println!("The core did not build successfully (emmake)!");
-            dbg!("Command: ");
-            dbg!(
-                "emmake",
+            println!("Command: ");
+            println!(
+                "{:#?}",
                 [
+                    "emmake",
                     "make",
                     "-j",
                     "-f",
@@ -125,10 +126,11 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .expect("The core did not build successfully!");
         if !out.status.success() {
             println!("Command did not exit successfuly!");
-            dbg!("Command: ");
-            dbg!(
-                "make",
+            println!("Command: ");
+            println!(
+                "{:#?}",
                 [
+                    "make",
                     "-j",
                     "-f",
                     match mf {
