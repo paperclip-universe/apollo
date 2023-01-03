@@ -64,7 +64,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
 
             let _ = output
                 .wait_with_output()
-                .expect("The core did not path successfully!");
+                .expect("The core did not patch successfully!");
         }
 
         let output = Command::new("emmake")
@@ -86,7 +86,22 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .wait_with_output()
             .expect("The core did not build successfully!");
         if !out.status.success() {
-            println!("Command did not exit successfuly!");
+            println!("The core did not build successfully (emmake)!");
+            dbg!("Command: ");
+            dbg!(
+                "emmake",
+                [
+                    "make",
+                    "-j",
+                    "-f",
+                    match mf {
+                        None => "Makefile",
+                        Some(x) => x,
+                    },
+                    "platform=emscripten",
+                    "TARGET_NAME=build/apollo",
+                ]
+            );
             exit(1);
         }
     } else {
@@ -110,6 +125,19 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .expect("The core did not build successfully!");
         if !out.status.success() {
             println!("Command did not exit successfuly!");
+            dbg!("Command: ");
+            dbg!(
+                "make",
+                [
+                    "-j",
+                    "-f",
+                    match mf {
+                        Some(x) => x,
+                        None => "Makefile",
+                    },
+                    "TARGET_NAME=build/apollo",
+                ]
+            );
             exit(1);
         }
     }
