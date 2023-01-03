@@ -2,9 +2,9 @@
 # Please adjust to your needs (see https://www.gitpod.io/docs/config-gitpod-file)
 # and commit this file to your remote git repository to share the goodness with others.
 
-tasks: 
+tasks:
   - init: cd emsdk && ./emsdk install latest &&./emsdk activate latest
-    command: | 
+    command: |
       echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
       gp sync-done emsdk
       exit
@@ -13,8 +13,16 @@ tasks:
   - init: rustup install nightly && rustup component add rustfmt
     before: |
       rustup default nightly
+      cargo fetch
       gp sync-await emsdk
+      source "/workspace/apollo/emsdk/emsdk_env.sh"
+      gp sync-await submodule
       cargo build
       exit
     name: Install and setup Rust
+    openMode: split-right
+  - command: |
+      gp sync-done submodule
+      git submodule foreach git reset --hard
+    name: Update submodules
     openMode: split-right
