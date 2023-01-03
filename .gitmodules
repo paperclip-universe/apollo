@@ -31,3 +31,6 @@ url = https://github.com/libretro/FreeIntv
 [submodule "emsdk"]
 	path = emsdk
 	url = https://github.com/emscripten-core/emsdk.git
+[submodule "apollo-libretro-cores/apollo-libretro-gearcoleco/Gearcoleco"]
+	path = apollo-libretro-cores/apollo-libretro-gearcoleco/Gearcoleco
+	url = https://github.com/drhelius/Gearcoleco
