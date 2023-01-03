@@ -1,30 +1,31 @@
 tasks:
   - init: cd emsdk && ./emsdk install latest &&./emsdk activate latest
-    command: >
-      echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >>
-      $HOME/.bash_profile
-
-      gp sync-done emsdk
-
-      exit
+    command: |
+      (
+        echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >>
+        $HOME/.bash_profile
+      )
     name: Install and setup Emscripten
     openMode: split-right
   - init: |
-      git submodule update --init
-      git submodule foreach git reset --hard
-      gp sync-done submodule
-      exit
+      (
+        git submodule update --init
+        git submodule foreach git reset --hard
+      )
     name: Update submodules
     openMode: split-right
   - init: |
-      rustup install nightly
-      rustup default nightly
-      rustup component add rustfmt
-      cargo fetch
-      cargo check
+      (
+        rustup install nightly
+        rustup default nightly
+        rustup component add rustfmt
+        cargo fetch
+        cargo check
+      )
     before: |
-      source "/workspace/apollo/emsdk/emsdk_env.sh"
-      cargo build
-      exit
+      (
+        source "/workspace/apollo/emsdk/emsdk_env.sh"
+        cargo build
+      )
     name: Install and setup Rust
     openMode: split-right
