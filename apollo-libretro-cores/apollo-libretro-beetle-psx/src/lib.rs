@@ -1,3 +1,3 @@
-pub fn get_path() -> &'static str {
-    env!("CPATH")
+pub fn get_path() -> Option<&'static str> {
+    Some(env!("CPATH"))
 }

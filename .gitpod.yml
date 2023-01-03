@@ -11,11 +11,13 @@ tasks:
       exit
     name: Install and setup Emscripten
     openMode: split-right
-  - init: rustup install nightly && rustup component add rustfmt
-    before: |
+  - init: |
+      rustup install nightly
       rustup default nightly
+      rustup component add rustfmt
       cargo fetch
       cargo check
+    before: |
       gp sync-await emsdk
       source "/workspace/apollo/emsdk/emsdk_env.sh"
       gp sync-await submodule
@@ -23,9 +25,10 @@ tasks:
       exit
     name: Install and setup Rust
     openMode: split-right
-  - command: |
-      gp sync-done submodule
+  - init: |
+      git submodule update --init
       git submodule foreach git reset --hard
+      gp sync-done submodule
       exit
     name: Update submodules
     openMode: split-right
