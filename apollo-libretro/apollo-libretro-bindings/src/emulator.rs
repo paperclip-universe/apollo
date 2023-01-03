@@ -80,7 +80,7 @@ fn create_core(core_path: &Path) -> (Box<Library>, CoreAPI) {
     };
     let path: PathBuf = core_path.with_extension(suffix);
     #[cfg(target_os = "linux")]
-    let library: Library = {
+    let library: Library = unsafe {
         // Load library with `RTLD_NOW | RTLD_NODELETE` to fix a SIGSEGV
         ::libloading::os::unix::Library::open(Some(path), 0x2 | 0x1000)
             .unwrap()
