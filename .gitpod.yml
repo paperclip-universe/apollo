@@ -7,9 +7,14 @@ tasks:
     command: | 
       echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
       gp sync-done emsdk
+      exit
     name: Install and setup Emscripten
-  - init: rustup default nightly && rustup component add rustfmt
+    openMode: split-right
+  - init: rustup install nightly && rustup component add rustfmt
     before: |
+      rustup default nightly
       gp sync-await emsdk
       cargo build
+      exit
     name: Install and setup Rust
+    openMode: split-right
