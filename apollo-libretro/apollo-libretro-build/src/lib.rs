@@ -116,7 +116,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
     println!(
         "cargo:rustc-env=CPATH={}",
         fs::canonicalize(
-            glob("./*/build/apollo_libretro*")
+            glob(&format!("./{dir}/build/apollo_libretro*"))
                 .unwrap()
                 .filter_map(Result::ok)
                 .collect::<Vec<_>>()
