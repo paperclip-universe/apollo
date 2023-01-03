@@ -26,7 +26,7 @@ fn assert_cli(program: &str) {
     }
 }
 
-pub fn build(dir: &str, patch: Option<&str>) {
+pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
     let target_os = env::var("TARGET").unwrap();
 
     glob("./*/build/apollo_libretro*")
@@ -72,7 +72,10 @@ pub fn build(dir: &str, patch: Option<&str>) {
                 "make",
                 "-j",
                 "-f",
-                "Makefile",
+                match mf {
+                    None => "Makefile",
+                    Some(x) => x,
+                },
                 "platform=emscripten",
                 "TARGET_NAME=build/apollo",
             ])
@@ -90,7 +93,15 @@ pub fn build(dir: &str, patch: Option<&str>) {
         assert_cli("make");
 
         let output = Command::new("make")
-            .args(["-j", "TARGET_NAME=build/apollo"])
+            .args([
+                "-j",
+                "-f",
+                match mf {
+                    Some(x) => x,
+                    None => "Makefile",
+                },
+                "TARGET_NAME=build/apollo",
+            ])
             .current_dir(format!("./{dir}"))
             .spawn()
             .expect("Make could not be invoked!");
