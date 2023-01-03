@@ -1,0 +1,9 @@
+[package]
+name = "apollo-libretro-cores"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+apollo-libretro-mgba = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-mgba" }

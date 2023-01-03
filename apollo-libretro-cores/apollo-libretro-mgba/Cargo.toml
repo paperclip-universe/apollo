@@ -8,5 +8,4 @@ edition = "2021"
 [dependencies]
 
 [build-dependencies]
-bindgen = "0.63.0"
-cc = "1.0.78"
+apollo-libretro-build = { version = "0.1.0", path = "../../apollo-libretro/apollo-libretro-build" }

@@ -1,8 +1,8 @@
 
 [workspace]
 members = [
-    "apollo-api/*"
-,
+    "apollo-api/*",
     "apollo-frontend/*",
-    # "apollo-gba/*",
-    "apollo-libretro/*"]
+    "apollo-libretro/*",
+    "apollo-libretro-cores/*",
+]
