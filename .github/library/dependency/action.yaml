@@ -1,0 +1,30 @@
+name: "Dependencies"
+description: Grabs dependencies for all the systems
+inputs:
+  system:
+    description: The OS to install dependencies for.
+    required: true
+    
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        sudo apt-get install freeglut3-dev
+      name: Install Ubuntu dependencies
+      shell: bash
+      if: startsWith(inputs.os, 'ubuntu')
+    
+    - run: |
+        brew install freeglut
+      name: Install MacOS dependencies
+      shell: bash
+      if: startsWith(inputs.os, 'macos')
+    
+    - run: |
+        choco install 7zip.portable
+        curl -s https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest | grep "browser_download.*release-mingw.7z" | cut -d : -f 2,3 | tr -d \" | wget -qi - -O mesa.7z
+        7za x mesa.7z
+        cd mesa
+        cmd.exe /c systemwidedeploy.cmd
+      shell: bash
+      if: startsWith(inputs.os, 'windows')
