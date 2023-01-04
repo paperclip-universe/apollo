@@ -38,6 +38,17 @@ jobs:
         run: cargo build --verbose
       - name: Run tests
         run: cargo test --verbose
+  build-status:
+    runs-on: ubuntu-20.04
+    needs: [build]
+    if: always()
+    steps:
+      - name: Successful deploy
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Failing deploy
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
   lint:
     runs-on: ubuntu-latest
     steps:
