@@ -45,6 +45,6 @@ jobs:
     steps:
       - run: rustup update nightly
       - run: rustup default nightly
-      - uses: actions-rs/audit-check
+      - uses: actions-rs/audit-check@latest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
