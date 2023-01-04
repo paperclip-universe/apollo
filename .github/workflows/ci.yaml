@@ -23,7 +23,7 @@ jobs:
         with:
           submodules: recursive
       - if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get install libmesa-dev
+        run: sudo apt-get install freeglut3-dev
       - run: cargo generate-lockfile
       - name: Cache build outputs
         uses: actions/cache@v3
