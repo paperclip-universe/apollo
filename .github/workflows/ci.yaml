@@ -43,6 +43,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - run: rustup update nightly
       - run: rustup default nightly
       - uses: actions-rs/audit-check@v1
