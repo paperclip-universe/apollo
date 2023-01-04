@@ -1,0 +1,7 @@
+version = 1
+
+[update]
+always = true
+
+[merge.message]
+title = "pull_request_title"
