@@ -1,8 +1,1 @@
 version = 1
-
-[update]
-always = true
-autoupdate_label = ["autoupdate"]
-
-[merge.message]
-title = "pull_request_title"
