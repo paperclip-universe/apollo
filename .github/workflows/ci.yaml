@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  RUST_FLAGS: -Dwarnings
 
 jobs:
   build:
@@ -28,3 +29,24 @@ jobs:
         run: cargo build --verbose --target=wasm32-unknown-unknown
       - name: Run tests
         run: cargo test --verbose
+  lint:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - run: rustup update nightly
+      - run: rustup default nightly
+      - run: rustup component add clippy
+      - run: cargo check
+      - run: cargo clippy
+  audit:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: rustup update nightly
+      - run: rustup default nightly
+      - uses: actions-rs/audit-check
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

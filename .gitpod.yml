@@ -4,6 +4,7 @@ tasks:
       rustup default nightly
       rustup component add rustfmt
       rustup target add wasm32-unknown-unknown wasm32-unknown-emscripten
+      cargo install cargo-audit
       cargo fetch
       git submodule update --init
       git submodule foreach git reset --hard
