@@ -28,7 +28,6 @@ jobs:
       - name: Run tests
         run: cargo test --verbose
   lint:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -40,7 +39,6 @@ jobs:
       - run: cargo check
       - run: cargo clippy
   audit:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
