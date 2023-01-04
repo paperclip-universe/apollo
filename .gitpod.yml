@@ -1,12 +1,14 @@
 tasks:
-  - init: | 
+  - init: |
       rustup install nightly
       rustup default nightly
       rustup component add rustfmt
+      rustup target add wasm32-unknown-unknown wasm32-unknown-emscripten
       cargo fetch
       git submodule update --init
       git submodule foreach git reset --hard
       cd emsdk && ./emsdk install latest && ./emsdk activate latest
       source "/workspace/apollo/emsdk/emsdk_env.sh"
       echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
+      echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >> $HOME/.zsh_profile
       cargo check
