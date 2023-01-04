@@ -16,11 +16,14 @@ jobs:
       matrix:
         toolchain: [nightly]
         os: [windows-latest, macos-latest, ubuntu-latest]
+      fail-fast: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
+      - if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get install freeglut3-dev
       - run: cargo generate-lockfile
       - name: Cache build outputs
         uses: actions/cache@v3
