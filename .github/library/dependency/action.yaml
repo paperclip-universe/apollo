@@ -12,13 +12,13 @@ runs:
         sudo apt-get install freeglut3-dev
       name: Install Ubuntu dependencies
       shell: bash
-      if: startsWith(inputs.os, 'ubuntu')
+      if: startsWith(inputs.system, 'ubuntu')
     
     - run: |
         brew install freeglut
       name: Install MacOS dependencies
       shell: bash
-      if: startsWith(inputs.os, 'macos')
+      if: startsWith(inputs.system, 'macos')
     
     - run: |
         choco install 7zip.portable
@@ -27,4 +27,4 @@ runs:
         cd mesa
         cmd.exe /c systemwidedeploy.cmd
       shell: bash
-      if: startsWith(inputs.os, 'windows')
+      if: startsWith(inputs.system, 'windows')
