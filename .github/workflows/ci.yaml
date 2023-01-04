@@ -47,6 +47,7 @@ jobs:
           path: |
             ~/target
             ~/**/build/
+        key: cache-${{ hashFiles('~/Cargo.lock') }}
       - run: rustup update nightly
       - run: rustup default nightly
       - run: rustup component add clippy
