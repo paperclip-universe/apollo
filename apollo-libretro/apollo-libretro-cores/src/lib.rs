@@ -5,10 +5,12 @@ use apollo_libretro_beetle_vb::get_path as beetle_vb_get_path;
 use apollo_libretro_beetle_wswan::get_path as beetle_wswan_get_path;
 use apollo_libretro_freechaf::get_path as freechaf_get_path;
 use apollo_libretro_freeintv::get_path as freeintv_get_path;
+use apollo_libretro_gearcoleco::get_path as gearcoleco_get_path;
+use apollo_libretro_genesis_plus_gx::get_path as genesis_plus_gx_get_path;
 use apollo_libretro_mgba::get_path as mgba_get_path;
 
 pub fn get_all() -> Vec<&'static str> {
-    const FUNCTIONS: [fn() -> Option<&'static str>; 8] = [
+    const FUNCTIONS: [fn() -> Option<&'static str>; 10] = [
         a5200_get_path,
         beetle_ngb_get_path,
         beetle_psx_get_path,
@@ -16,6 +18,8 @@ pub fn get_all() -> Vec<&'static str> {
         beetle_wswan_get_path,
         freechaf_get_path,
         freeintv_get_path,
+        gearcoleco_get_path,
+        genesis_plus_gx_get_path,
         mgba_get_path,
     ];
 

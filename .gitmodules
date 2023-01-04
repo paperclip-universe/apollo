@@ -34,3 +34,6 @@ url = https://github.com/libretro/FreeIntv
 [submodule "apollo-libretro-cores/apollo-libretro-gearcoleco/Gearcoleco"]
 	path = apollo-libretro-cores/apollo-libretro-gearcoleco/Gearcoleco
 	url = https://github.com/drhelius/Gearcoleco
+[submodule "apollo-libretro-cores/apollo-libretro-genesis-plus-gx/Genesis-Plus-GX"]
+	path = apollo-libretro-cores/apollo-libretro-genesis-plus-gx/Genesis-Plus-GX
+	url = https://github.com/libretro/Genesis-Plus-GX

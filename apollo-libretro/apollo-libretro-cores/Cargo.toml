@@ -13,4 +13,6 @@ apollo-libretro-beetle-vb = { version = "0.1.0", path = "../../apollo-libretro-c
 apollo-libretro-beetle-wswan = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-beetle-wswan" }
 apollo-libretro-freechaf = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-freechaf" }
 apollo-libretro-freeintv = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-freeintv" }
+apollo-libretro-gearcoleco = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-gearcoleco" }
+apollo-libretro-genesis-plus-gx = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-genesis-plus-gx" }
 apollo-libretro-mgba = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-mgba" }
