@@ -37,3 +37,45 @@ url = https://github.com/libretro/FreeIntv
 [submodule "apollo-libretro-cores/apollo-libretro-genesis-plus-gx/Genesis-Plus-GX"]
 	path = apollo-libretro-cores/apollo-libretro-genesis-plus-gx/Genesis-Plus-GX
 	url = https://github.com/libretro/Genesis-Plus-GX
+[submodule "apollo-libretro-cores/apollo-libretro-handy/libretro-handy"]
+	path = apollo-libretro-cores/apollo-libretro-handy/libretro-handy
+	url = https://github.com/libretro/libretro-handy
+[submodule "apollo-libretro-cores/apollo-libretro-melonds/melonds"]
+	path = apollo-libretro-cores/apollo-libretro-melonds/melonds
+	url = https://github.com/libretro/melonds
+[submodule "apollo-libretro-cores/apollo-libretro-mupen64plus-next/mupen64plus-libretro-nx"]
+	path = apollo-libretro-cores/apollo-libretro-mupen64plus-next/mupen64plus-libretro-nx
+	url = https://github.com/libretro/mupen64plus-libretro-nx
+[submodule "apollo-libretro-cores/apollo-libretro-neocd/neocd_libretro"]
+	path = apollo-libretro-cores/apollo-libretro-neocd/neocd_libretro
+	url = https://github.com/libretro/neocd_libretro
+[submodule "apollo-libretro-cores/apollo-libretro-nestopia-ue/nestopia"]
+	path = apollo-libretro-cores/apollo-libretro-nestopia-ue/nestopia
+	url = https://github.com/libretro/nestopia
+[submodule "apollo-libretro-cores/apollo-libretro-o2em/libretro-o2em"]
+	path = apollo-libretro-cores/apollo-libretro-o2em/libretro-o2em
+	url = https://github.com/libretro/libretro-o2em
+[submodule "apollo-libretro-cores/apollo-libretro-opera/opera-libretro"]
+	path = apollo-libretro-cores/apollo-libretro-opera/opera-libretro
+	url = https://github.com/libretro/opera-libretro
+[submodule "apollo-libretro-cores/apollo-libretro-parallel-64/parallel-n64"]
+	path = apollo-libretro-cores/apollo-libretro-parallel-64/parallel-n64
+	url = https://github.com/libretro/parallel-n64
+[submodule "apollo-libretro-cores/apollo-libretro-prosystem/prosystem-libretro"]
+	path = apollo-libretro-cores/apollo-libretro-prosystem/prosystem-libretro
+	url = https://github.com/libretro/prosystem-libretro
+[submodule "apollo-libretro-cores/apollo-libretro-snes9x/snes9x"]
+	path = apollo-libretro-cores/apollo-libretro-snes9x/snes9x
+	url = https://github.com/libretro/snes9x
+[submodule "apollo-libretro-cores/apollo-libretro-stella-2014/stella2014-libretro"]
+	path = apollo-libretro-cores/apollo-libretro-stella-2014/stella2014-libretro
+	url = https://github.com/libretro/stella2014-libretro
+[submodule "apollo-libretro-cores/apollo-libretro-vecx/libretro-vecx"]
+	path = apollo-libretro-cores/apollo-libretro-vecx/libretro-vecx
+	url = https://github.com/libretro/libretro-vecx
+[submodule "apollo-libretro-cores/apollo-libretro-virtual-jaguar/virtualjaguar-libretro"]
+	path = apollo-libretro-cores/apollo-libretro-virtual-jaguar/virtualjaguar-libretro
+	url = https://github.com/libretro/virtualjaguar-libretro
+[submodule "apollo-libretro-cores/apollo-libretro-yabause/yabause"]
+	path = apollo-libretro-cores/apollo-libretro-yabause/yabause
+	url = https://github.com/libretro/yabause

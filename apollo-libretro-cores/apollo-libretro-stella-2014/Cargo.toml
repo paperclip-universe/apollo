@@ -1,0 +1,11 @@
+[package]
+name = "apollo-libretro-stella-2014"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[build-dependencies]
+apollo-libretro-build = { version = "0.1.0", path = "../../apollo-libretro/apollo-libretro-build" }
