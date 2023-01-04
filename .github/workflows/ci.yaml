@@ -25,8 +25,6 @@ jobs:
       - run: rustup target add wasm32-unknown-unknown
       - name: Build
         run: cargo build --verbose
-      - name: Build (wasm)
-        run: cargo build --verbose --target=wasm32-unknown-unknown
       - name: Run tests
         run: cargo test --verbose
   lint:
