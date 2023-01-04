@@ -29,6 +29,9 @@ jobs:
             ~/target
             ~/**/build/
           key: cache-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            cache-${{ hashFiles('Cargo.lock') }}
+            cache-
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
       - run: rustup target add wasm32-unknown-unknown
       - name: Build
@@ -49,6 +52,9 @@ jobs:
             ~/target
             ~/**/build/
           key: cache-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            cache-${{ hashFiles('Cargo.lock') }}
+            cache-
       - run: rustup update nightly
       - run: rustup default nightly
       - run: rustup component add clippy
