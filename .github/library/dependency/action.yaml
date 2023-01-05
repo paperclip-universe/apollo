@@ -35,6 +35,7 @@ runs:
       shell: bash
       if: startsWith(inputs.system, 'windows')
     - run: |
+        cd mesa
         & ".\systemwidedeploy.cmd"
       shell: pwsh
       if: startsWith(inputs.system, 'windows')
