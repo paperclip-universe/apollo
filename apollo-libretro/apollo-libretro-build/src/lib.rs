@@ -1,3 +1,4 @@
+use ci_info::is_ci;
 use glob::glob;
 use owo_colors::OwoColorize;
 use std::{
@@ -28,6 +29,7 @@ fn assert_cli(program: &str) {
 
 pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
     let target_os = env::var("TARGET").unwrap();
+    const CI_MAKE_J: &str = "-j 2";
 
     glob("./*/build/apollo_libretro*")
         .unwrap()
@@ -70,7 +72,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
         let output = Command::new("emmake")
             .args([
                 "make",
-                "-j",
+                if is_ci() { "-j" } else { CI_MAKE_J },
                 "-f",
                 match mf {
                     None => "Makefile",
@@ -93,7 +95,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
                 [
                     "emmake",
                     "make",
-                    "-j",
+                    if is_ci() { "-j" } else { CI_MAKE_J },
                     "-f",
                     match mf {
                         None => "Makefile",
