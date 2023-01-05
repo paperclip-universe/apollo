@@ -36,6 +36,5 @@ runs:
       if: startsWith(inputs.system, 'windows')
     - run: |
         & ".\systemwidedeploy.cmd"
-        cd ..
-      shell: powershell
+      shell: pwsh
       if: startsWith(inputs.system, 'windows')
