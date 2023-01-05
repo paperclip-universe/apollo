@@ -1,11 +1,11 @@
 [package]
-name = "apollo-libretro-build"
+name = "apollo-libretro-o2em"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-owo-colors = "3.5.0"
-glob = "0.3.0"
-ci_info = "0.14.9"
+
+[build-dependencies]
+apollo-libretro-build = { version = "0.1.0", path = "../../apollo-libretro/apollo-libretro-build" }

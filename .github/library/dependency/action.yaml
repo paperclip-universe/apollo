@@ -4,7 +4,7 @@ inputs:
   system:
     description: The OS to install dependencies for.
     required: true
-    
+
 runs:
   using: "composite"
   steps:
@@ -12,19 +12,30 @@ runs:
         sudo apt-get install freeglut3-dev
       name: Install Ubuntu dependencies
       shell: bash
-      if: startsWith(inputs.os, 'ubuntu')
-    
+      if: startsWith(inputs.system, 'ubuntu')
+
+    - name: Set up Homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+      if: startsWith(inputs.system, 'macos')
     - run: |
-        brew install freeglut
+        brew install freeglut glew mesa mesa-glu mesalib-glw
       name: Install MacOS dependencies
       shell: bash
-      if: startsWith(inputs.os, 'macos')
-    
+      if: startsWith(inputs.system, 'macos')
+
+    - name: Install 7zip
+      uses: crazy-max/ghaction-chocolatey@v2
+      with:
+        args: install 7zip.portable
+      if: startsWith(inputs.system, 'windows')
     - run: |
-        choco install 7zip.portable
         curl -s https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest | grep "browser_download.*release-mingw.7z" | cut -d : -f 2,3 | tr -d \" | wget -qi - -O mesa.7z
-        7za x mesa.7z
+        7za x mesa.7z -omesa
         cd mesa
-        cmd.exe /c systemwidedeploy.cmd
       shell: bash
-      if: startsWith(inputs.os, 'windows')
+      if: startsWith(inputs.system, 'windows')
+    - run: |
+        cd mesa
+        cmd /c ".\systemwidedeploy.cmd"
+      shell: pwsh
+      if: startsWith(inputs.system, 'windows')
