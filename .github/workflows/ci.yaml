@@ -8,7 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  RUSTFLAGS: -A clippy::unused-imports -Dwarnings
+  RUSTFLAGS: -Aclippy::unused_imports -Dwarnings
 
 jobs:
   build:
