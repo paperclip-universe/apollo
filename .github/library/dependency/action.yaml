@@ -32,6 +32,10 @@ runs:
         curl -s https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest | grep "browser_download.*release-mingw.7z" | cut -d : -f 2,3 | tr -d \" | wget -qi - -O mesa.7z
         7za x mesa.7z -omesa
         cd mesa
-        cmd.exe /c systemwidedeploy.cmd
       shell: bash
+      if: startsWith(inputs.system, 'windows')
+    - run: |
+        & ".\systemwidedeploy.cmd"
+        cd ..
+      shell: powershell
       if: startsWith(inputs.system, 'windows')
