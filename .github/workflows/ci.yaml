@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         toolchain: [nightly]
-        os: [macos-latest, ubuntu-latest]
+        os: [ubuntu-latest]
       fail-fast: false
     runs-on: ubuntu-latest
     steps:

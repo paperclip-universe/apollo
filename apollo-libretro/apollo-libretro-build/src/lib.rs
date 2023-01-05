@@ -29,7 +29,7 @@ fn assert_cli(program: &str) {
 
 pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
     let target_os = env::var("TARGET").unwrap();
-    const CI_MAKE_J: &str = "-j 1";
+    const CI_MAKE_J: &str = "";
 
     glob("./*/build/apollo_libretro*")
         .unwrap()
