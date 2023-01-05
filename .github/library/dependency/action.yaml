@@ -18,7 +18,7 @@ runs:
       uses: Homebrew/actions/setup-homebrew@master
       if: startsWith(inputs.system, 'macos')
     - run: |
-        brew install freeglut
+        brew install freeglut glew mesa mesa-glu mesalib-glw
       name: Install MacOS dependencies
       shell: bash
       if: startsWith(inputs.system, 'macos')
