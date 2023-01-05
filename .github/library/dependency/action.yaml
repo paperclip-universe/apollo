@@ -36,6 +36,6 @@ runs:
       if: startsWith(inputs.system, 'windows')
     - run: |
         cd mesa
-        Invoke-Item ".\systemwidedeploy.cmd"
+        cmd /c ".\systemwidedeploy.cmd"
       shell: pwsh
       if: startsWith(inputs.system, 'windows')
