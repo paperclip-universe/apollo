@@ -16,7 +16,7 @@ runs:
     
     - name: Set up Homebrew
       uses: Homebrew/actions/setup-homebrew@master
-      if: startsWith(inputs.system, 'macos')\
+      if: startsWith(inputs.system, 'macos')
     - run: |
         brew install freeglut
       name: Install MacOS dependencies
@@ -27,7 +27,6 @@ runs:
       uses: crazy-max/ghaction-chocolatey@v2
       with:
           args: install 7zip.portable
-      shell: bash
       if: startsWith(inputs.system, 'windows')
     - run: |
         curl -s https://api.github.com/repos/pal1000/mesa-dist-win/releases/latest | grep "browser_download.*release-mingw.7z" | cut -d : -f 2,3 | tr -d \" | wget -qi - -O mesa.7z
