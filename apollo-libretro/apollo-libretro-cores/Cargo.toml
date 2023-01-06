@@ -28,5 +28,5 @@ apollo-libretro-prosystem = { version = "0.1.0", path = "../../apollo-libretro-c
 apollo-libretro-snes9x = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-snes9x" }
 apollo-libretro-stella-2014 = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-stella-2014" }
 apollo-libretro-vecx = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-vecx" }
-apollo-libretro-virtual-jaguar = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-virtal-jaguar" }
+apollo-libretro-virtual-jaguar = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-virtual-jaguar" }
 apollo-libretro-yabause = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-yabause" }
