@@ -18,7 +18,7 @@ apollo-libretro-genesis-plus-gx = { version = "0.1.0", path = "../../apollo-libr
 apollo-libretro-mgba = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-mgba" }
 apollo-libretro-handy = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-handy" }
 apollo-libretro-melonds = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-melonds" }
-apollo-libretro-mupen64plus-next = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-mupen64plus_next" }
+apollo-libretro-mupen64plus-next = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-mupen64plus-next" }
 apollo-libretro-neocd = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-neocd" }
 apollo-libretro-nestopia-ue = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-nestopia-ue" }
 apollo-libretro-o2em = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-o2em" }
