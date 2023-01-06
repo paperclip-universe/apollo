@@ -78,6 +78,11 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
                     None => "Makefile",
                     Some(x) => x,
                 },
+                if target_os == *"macos" {
+                    r#"CFLAGS="-D__APPLE__""#
+                } else {
+                    ""
+                },
                 "platform=emscripten",
                 "TARGET_NAME=build/apollo",
             ])
