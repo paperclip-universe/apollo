@@ -36,8 +36,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ~/target
-            ~/**/build/
+            target
+            apollo-libretro-cores/**/build/
           key: cache-${{ hashFiles('Cargo.lock') }}
           restore-keys: |
             cache-${{ hashFiles('Cargo.lock') }}
