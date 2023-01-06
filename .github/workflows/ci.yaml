@@ -17,7 +17,7 @@ jobs:
         toolchain: [nightly]
         os: [macos-latest, ubuntu-latest]
       fail-fast: false
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         with:
