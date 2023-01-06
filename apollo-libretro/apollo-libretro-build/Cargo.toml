@@ -7,5 +7,5 @@ edition = "2021"
 
 [dependencies]
 owo-colors = "3.5.0"
-glob = "0.3.0"
+glob = "0.3.1"
 ci_info = "0.14.9"
