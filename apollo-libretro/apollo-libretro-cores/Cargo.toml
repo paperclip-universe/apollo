@@ -16,3 +16,17 @@ apollo-libretro-freeintv = { version = "0.1.0", path = "../../apollo-libretro-co
 apollo-libretro-gearcoleco = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-gearcoleco" }
 apollo-libretro-genesis-plus-gx = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-genesis-plus-gx" }
 apollo-libretro-mgba = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-mgba" }
+apollo-libretro-handy = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-handy" }
+apollo-libretro-melonds = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-melonds" }
+apollo-libretro-mupen64plus-next = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-mupen64plus-next" }
+apollo-libretro-neocd = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-neocd" }
+apollo-libretro-nestopia-ue = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-nestopia-ue" }
+apollo-libretro-o2em = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-o2em" }
+apollo-libretro-opera = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-opera" }
+apollo-libretro-parallel-64 = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-parallel-64" }
+apollo-libretro-prosystem = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-prosystem" }
+apollo-libretro-snes9x = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-snes9x" }
+apollo-libretro-stella-2014 = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-stella-2014" }
+apollo-libretro-vecx = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-vecx" }
+apollo-libretro-virtual-jaguar = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-virtual-jaguar" }
+apollo-libretro-yabause = { version = "0.1.0", path = "../../apollo-libretro-cores/apollo-libretro-yabause" }
