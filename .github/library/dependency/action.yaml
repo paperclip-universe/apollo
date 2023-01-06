@@ -9,8 +9,8 @@ runs:
   using: "composite"
   steps:
     - run: |
-        gem install apt-spy2
-        apt-spy2 check
+        sudo gem install apt-spy2
+        sudo apt-spy2 check
         sudo apt-spy2 fix
         sudo apt-get install freeglut3-dev
       name: Install Ubuntu dependencies
