@@ -22,7 +22,8 @@ runs:
       uses: Homebrew/actions/setup-homebrew@master
       if: startsWith(inputs.system, 'macos')
     - run: |
-        brew install freeglut glew glfw3 xquartz
+        brew install freeglut glew glfw3 
+        brew install --cask xquartz
       name: Install MacOS dependencies
       shell: bash
       if: startsWith(inputs.system, 'macos')
