@@ -24,7 +24,7 @@ use apollo_libretro_virtual_jaguar::get_path as virtual_jaguar_get_path;
 use apollo_libretro_yabause::get_path as yabause_get_path; 
 
 pub fn get_all() -> Vec<&'static str> {
-    const FUNCTIONS: [fn() -> Option<&'static str>; 10] = [
+    const FUNCTIONS: [fn() -> Option<&'static str>; 24] = [
         a5200_get_path,
         beetle_ngb_get_path,
         beetle_psx_get_path,
