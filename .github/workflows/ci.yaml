@@ -26,6 +26,7 @@ jobs:
         uses: pierotofy/set-swap-space@master
         with:
           swap-size-gb: 10
+        if: ${{ matrix.os != "macos") }}
       - name: Install dependencies
         id: install-depencies
         uses: ./.github/library/dependency
