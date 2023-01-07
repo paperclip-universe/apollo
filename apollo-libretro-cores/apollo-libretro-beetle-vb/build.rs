@@ -1,3 +1,4 @@
+#[cfg(not(target_os = "macos"))]
 use apollo_libretro_build::build;
 
 fn main() {
