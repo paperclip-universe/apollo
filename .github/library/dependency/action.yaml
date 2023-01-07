@@ -23,7 +23,7 @@ runs:
       if: startsWith(inputs.system, 'macos')
     - run: |
         brew install freeglut glew glfw3 
-        brew install --cask xquartz
+        # brew install --cask xquartz
       name: Install MacOS dependencies
       shell: bash
       if: startsWith(inputs.system, 'macos')
