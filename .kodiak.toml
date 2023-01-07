@@ -1,7 +1,4 @@
 version = 1
 
-[update]
-require_automerge_label = false
-
 [merge]
 priority_merge_label = "priority"
