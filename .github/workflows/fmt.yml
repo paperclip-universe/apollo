@@ -15,7 +15,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-      - run: rustup install nightly && rustup default nightly
+      - run: rustup install nightly
+      - run: rustup default nightly
+      - run: rustup component add rustfmt
       - run: cargo fmt --verbose
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
