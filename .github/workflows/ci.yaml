@@ -8,16 +8,16 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  RUSTFLAGS: -Dwarnings
+  RUSTFLAGS: -D warnings -A unused-imports
 
 jobs:
   build:
     strategy:
       matrix:
         toolchain: [nightly]
-        os: [ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
       fail-fast: false
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -26,6 +26,7 @@ jobs:
         uses: pierotofy/set-swap-space@master
         with:
           swap-size-gb: 10
+        if: ${{ !startsWith(matrix.os, 'macos') }}
       - name: Install dependencies
         id: install-depencies
         uses: ./.github/library/dependency
