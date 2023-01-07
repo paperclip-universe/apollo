@@ -63,6 +63,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - uses: olix0r/cargo-action-fmt/setup@v2
       - uses: actions/checkout@v3
         with:
           submodules: recursive
@@ -89,8 +90,8 @@ jobs:
       - run: rustup update nightly
       - run: rustup default nightly
       - run: rustup component add clippy
-      - run: cargo check
-      - run: cargo clippy
+      - run: cargo check -q --message-format=json | cargo-action-fmt
+      - run: cargo clippy -q --message-format=json | cargo-action-fmt
   audit:
     runs-on: ubuntu-latest
     steps:
