@@ -18,15 +18,13 @@ runs:
       shell: bash
       if: startsWith(inputs.system, 'ubuntu')
 
-    - name: Set up Homebrew
-      uses: Homebrew/actions/setup-homebrew@master
-      if: startsWith(inputs.system, 'macos')
-    - run: |
-        # brew install freeglut glew glfw3 
-        # brew install --cask xquartz
-      name: Install MacOS dependencies
-      shell: bash
-      if: startsWith(inputs.system, 'macos')
+    # - name: Set up Homebrew
+    #   uses: Homebrew/actions/setup-homebrew@master
+    #   if: startsWith(inputs.system, 'macos')
+    # - run: |
+    #   name: Install MacOS dependencies
+    #   shell: bash
+    #   if: startsWith(inputs.system, 'macos')
 
     - name: Install 7zip
       uses: crazy-max/ghaction-chocolatey@v2
