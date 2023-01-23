@@ -1,7 +1,7 @@
 tasks:
   - init: |
-      apt-get update
-      apt-get install libmesa-dev
+      sudo apt-get update
+      sudo apt-get install libmesa-dev
       rustup install nightly
       rustup default nightly
       rustup component add rustfmt
