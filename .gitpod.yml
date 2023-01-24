@@ -4,7 +4,7 @@ tasks:
       sudo apt-add-repository https://cli.github.com/packages
       sudo apt-get update
       sudo apt-get upgrade
-      sudo apt-get install libgl-dev gh
+      sudo apt-get install libgl-dev freeglut3-dev gh
       rustup install nightly
       rustup default nightly
       rustup component add rustfmt
