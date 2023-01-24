@@ -1,0 +1,11 @@
+[package]
+name = "apollo-hyper-libretro-core-freechaf"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[build-dependencies]
+apollo-hyper-libretro-build = { version = "0.1.0", path = "../../apollo-hyper-libretro/apollo-hyper-libretro-build" }
