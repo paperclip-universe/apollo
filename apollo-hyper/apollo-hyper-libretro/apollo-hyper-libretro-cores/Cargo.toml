@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 apollo-hyper-libretro-core-a5200 = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-a5200" }
-apollo-hyper-libretro-core-beetle-ngb = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-ngb" }
+apollo-hyper-libretro-core-beetle-ngp = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-ngp" }
 apollo-hyper-libretro-core-beetle-psx = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-psx" }
 apollo-hyper-libretro-core-beetle-vb = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-vb" }
 apollo-hyper-libretro-core-beetle-wswan = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-wswan" }
