@@ -45,7 +45,7 @@
 	url = https://github.com/libretro/yabause
 [submodule "apollo-hyper/apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-ngb/beetle-psx-libretro"]
 	path = apollo-hyper/apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-ngb/beetle-psx-libretro
-	url = https://github.com/libretro/beetle-psx-libretro
+	url = https://github.com/libretro/beetle-ngb-libretro
 [submodule "apollo-hyper/apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-vb/beetle-vb-libretro"]
 	path = apollo-hyper/apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-vb/beetle-vb-libretro
 	url = https://github.com/libretro/beetle-vb-libretro
