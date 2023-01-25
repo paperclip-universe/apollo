@@ -82,6 +82,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
                 "TARGET_NAME=build/apollo",
             ])
             .current_dir(fs::canonicalize(format!("./{dir}")).unwrap())
+            .stdout(Stdio::piped())
             .spawn()
             .expect("Make could not be invoked!");
         let out = output
@@ -123,6 +124,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
                 "TARGET_NAME=build/apollo",
             ])
             .current_dir(format!("./{dir}"))
+            .stdout(Stdio::piped())
             .spawn()
             .expect("Make could not be invoked!");
         let out = output
