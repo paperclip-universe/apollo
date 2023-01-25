@@ -1,0 +1,14 @@
+[package]
+name = "apollo-hyper-libretro-bindings"
+version = "0.1.0"
+authors = ["Joseph C. Osborn <joseph.osborn@pomona.edu>", "Wyatt Stanke"]
+edition = "2021"
+license = "Apache-2.0"
+
+[dependencies]
+apollo-hyper-api-standard = { version = "0.1.0", path = "../../apollo-hyper-api/apollo-hyper-api-standard" }
+lazy_static = "1.4.0"
+libc = "0.2.139"
+libloading = "0.7.4"
+libretro-sys = { git = "https://github.com/Sinono3/libretro-sys", branch = "variadic_printf" }
+printf-compat = "0.1.1"

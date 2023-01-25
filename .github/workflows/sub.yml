@@ -13,10 +13,10 @@ jobs:
     name: Submodule update
     runs-on: ubuntu-latest
     env:
-      PARENT_REPOSITORY: 'apollo-retro/apollo'
-      CHECKOUT_BRANCH: 'main'
-      PR_AGAINST_BRANCH: 'main'
-      OWNER: 'apollo-retro'
+      PARENT_REPOSITORY: "apollo-hyper-retro/apollo"
+      CHECKOUT_BRANCH: "main"
+      PR_AGAINST_BRANCH: "main"
+      OWNER: "apollo-hyper-retro"
 
     steps:
       ##########################
