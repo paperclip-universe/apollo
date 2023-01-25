@@ -1,9 +1,9 @@
-// use apollo_hyper_libretro_build::build;
+use apollo_hyper_libretro_build::build;
 
 fn main() {
-    // build(
-    //     "mupen64plus-libretro-nx",
-    //     Some("mupen64plus_next.patch"),
-    //     None,
-    // );
+    build(
+        "mupen64plus-libretro-nx",
+        Some("mupen64plus_next.patch"),
+        None,
+    );
 }

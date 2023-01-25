@@ -1,5 +1,8 @@
-// TODO: Fix OpenGL
 pub fn get_path() -> Option<&'static str> {
-    // Some(env!("CPATH"))
-    None
+    let path = env!("COREPATH");
+    if path != "none" {
+        return Some(path);
+    } else {
+        return None;
+    }
 }

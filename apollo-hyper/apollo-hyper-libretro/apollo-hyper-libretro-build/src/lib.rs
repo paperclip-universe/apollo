@@ -88,24 +88,26 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .wait_with_output()
             .expect("The core did not build successfully!");
         if !out.status.success() {
-            println!("The core did not build successfully (emmake)!");
-            println!("Command: ");
+            println!("cargo:warning=Command did not exit successfuly!");
+            println!("cargo:warning=Command: ");
             println!(
-                "{:#?}",
+                "{}",
                 [
                     "emmake",
-                    "make",
-                    if is_ci() { "-j" } else { CI_MAKE_J },
+                    "-j",
                     "-f",
                     match mf {
-                        None => "Makefile",
                         Some(x) => x,
+                        None => "Makefile",
                     },
-                    "platform=emscripten",
                     "TARGET_NAME=build/apollo",
                 ]
+                .into_iter()
+                .map(|x| format!("cargo:warning={x}"))
+                .collect::<String>()
             );
-            exit(1);
+            println!("cargo:rustc-env=COREPATH=none");
+            return;
         }
     } else {
         assert_cli("make");
@@ -125,12 +127,12 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .expect("Make could not be invoked!");
         let out = output
             .wait_with_output()
-            .expect("The core did not build successfully!");
+            .expect("The child could not be invoked!");
         if !out.status.success() {
-            println!("Command did not exit successfuly!");
-            println!("Command: ");
+            println!("cargo:warning=Command did not exit successfuly!");
+            println!("cargo:warning=Command: ");
             println!(
-                "{:#?}",
+                "{}",
                 [
                     "make",
                     "-j",
@@ -141,12 +143,17 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
                     },
                     "TARGET_NAME=build/apollo",
                 ]
+                .into_iter()
+
+                .map(|x| format!("cargo:warning={x}"))
+                .collect::<String>()
             );
-            exit(1);
+            println!("cargo:rustc-env=COREPATH=none");
+            return;
         }
     }
     println!(
-        "cargo:rustc-env=CPATH={}",
+        "cargo:rustc-env=COREPATH={}",
         fs::canonicalize(
             glob(&format!("./{dir}/build/apollo_libretro*"))
                 .unwrap()
