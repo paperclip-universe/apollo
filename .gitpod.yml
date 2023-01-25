@@ -2,9 +2,10 @@ tasks:
   - init: |
       sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key 23F3D4EA75716059
       sudo apt-add-repository https://cli.github.com/packages
-      sudo apt-get update
-      sudo apt-get upgrade
-      sudo apt-get install libgl-dev freeglut3-dev gh
+      sudo apt-get update -y
+      sudo apt-get upgrade -y
+      sudo apt-get install libgl-dev freeglut3-dev 
+      sudo apt-get install gh -y
       rustup install nightly
       rustup default nightly
       rustup component add rustfmt
