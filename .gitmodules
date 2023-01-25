@@ -67,3 +67,6 @@
 [submodule "apollo-hyper/apollo-hyper-libretro-cores/apollo-hyper-libretro-core-genesis-plus-gx/Genesis-Plus-GX"]
 	path = apollo-hyper/apollo-hyper-libretro-cores/apollo-hyper-libretro-core-genesis-plus-gx/Genesis-Plus-GX
 	url = https://github.com/libretro/Genesis-Plus-GX
+[submodule "emsdk"]
+	path = emsdk
+	url = https://github.com/emscripten-core/emsdk
