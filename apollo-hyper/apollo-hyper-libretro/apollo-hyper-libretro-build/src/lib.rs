@@ -144,7 +144,6 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
                     "TARGET_NAME=build/apollo",
                 ]
                 .into_iter()
-
                 .map(|x| format!("cargo:warning={x}"))
                 .collect::<String>()
             );
