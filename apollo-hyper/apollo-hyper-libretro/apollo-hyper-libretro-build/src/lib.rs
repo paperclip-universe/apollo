@@ -1,4 +1,3 @@
-use ci_info::is_ci;
 use glob::glob;
 use owo_colors::OwoColorize;
 use std::{
@@ -72,7 +71,6 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
         let output = Command::new("emmake")
             .args([
                 "make",
-                if is_ci() { "-j" } else { CI_MAKE_J },
                 "-f",
                 match mf {
                     None => "Makefile",
