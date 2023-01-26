@@ -71,7 +71,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
         let output = Command::new("emmake")
             .args([
                 "make",
-                if is_ci() { "-j" } else { CI_MAKE_J },
+                "-j",
                 "-f",
                 match mf {
                     None => "Makefile",
