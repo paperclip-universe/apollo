@@ -4,11 +4,11 @@ tasks:
       sudo apt-add-repository https://cli.github.com/packages
       sudo apt-get update -y
       sudo apt-get upgrade -y
-      sudo apt-get install libgl-dev freeglut3-dev 
+      sudo apt-get install libgl-dev freeglut3-dev -y
       sudo apt-get install gh -y
       rustup install nightly
       rustup default nightly
-      rustup component add rustfmt
+      rustup component add rustfmt rust-analysis rust-src clippy rls
       rustup target add wasm32-unknown-unknown wasm32-unknown-emscripten
       cargo install cargo-audit
       cargo fetch

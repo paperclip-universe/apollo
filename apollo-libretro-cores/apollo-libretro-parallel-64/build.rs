@@ -1,5 +1,0 @@
-use apollo_libretro_build::build;
-
-fn main() {
-    build("parallel-n64", Some("parallel_n64.patch"), None);
-}
