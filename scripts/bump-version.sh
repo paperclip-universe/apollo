@@ -16,6 +16,6 @@ NEW_VERSION="${2}"
 echo "Bumping version: ${NEW_VERSION}"
 
 TOML_FILES="$(git ls-files '*Cargo.toml')"
-perl -pi -e "s/^version = .*\$/version = \"$NEW_VERSION\"/" $TOML_FILES
-perl -pi -e "s/^(symbolic.*version = )\"[^\"]*\"/\\1\"$NEW_VERSION\"/" $TOML_FILES
+perl -pi -e "s/^version = .*\$/version = \"$NEW_VERSION\"/" "$TOML_FILES"
+perl -pi -e "s/^(apollo.*version = )\"[^\"]*\"/\\1\"$NEW_VERSION\"/" "$TOML_FILES"
 cargo update -p symbolic --precise "${NEW_VERSION}"
