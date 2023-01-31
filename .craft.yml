@@ -1,0 +1,14 @@
+github:
+  owner: paperclip-universe
+  repo: apollo
+preReleaseCommand: bash scripts/bump-version.sh
+changelogPolicy: auto
+
+statusProvider:
+  name: github
+artifactProvider:
+  name: github
+
+targets:
+  - name: crates # Needs CRATES_IO_TOKEN (should also set CARGO_REGISTRY_TOKEN)
+  - name: github # Needs GITHUB_TOKEN

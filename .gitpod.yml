@@ -18,5 +18,6 @@ tasks:
       source "/workspace/apollo/emsdk/emsdk_env.sh"; \
       echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile; \
       echo 'source "/workspace/apollo/emsdk/emsdk_env.sh"' >> $HOME/.zsh_profile )
+      pnpm i -g @sentry/craft &
       wait
       cargo check
