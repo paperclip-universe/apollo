@@ -1,4 +1,3 @@
-use ci_info::is_ci;
 use glob::glob;
 use owo_colors::OwoColorize;
 use std::{
@@ -110,6 +109,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
         }
     } else {
         assert_cli("make");
+        assert_cli("nasm");
 
         let output = Command::new("make")
             .args([
@@ -128,23 +128,9 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .wait_with_output()
             .expect("The child could not be invoked!");
         if !out.status.success() {
-            println!("cargo:warning=Command did not exit successfuly!");
-            println!("cargo:warning=Command: ");
             println!(
-                "{}",
-                [
-                    "make",
-                    "-j",
-                    "-f",
-                    match mf {
-                        Some(x) => x,
-                        None => "Makefile",
-                    },
-                    "TARGET_NAME=build/apollo",
-                ]
-                .into_iter()
-                .map(|x| format!("cargo:warning={x}"))
-                .collect::<String>()
+                "cargo:warning={} did not build successfully!",
+                env::var("CARGO_PKG_NAME").unwrap()
             );
             println!("cargo:rustc-env=COREPATH=none");
             return;
