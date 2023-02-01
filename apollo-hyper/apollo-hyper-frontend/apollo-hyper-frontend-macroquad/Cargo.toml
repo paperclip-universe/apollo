@@ -6,3 +6,6 @@ edition = "2021"
 
 [dependencies]
 apollo-hyper-api-interface = { version = "0.1.0", path = "../../apollo-hyper-api/apollo-hyper-api-interface" }
+
+[dependencies]
+apollo-hyper-api-interface = { version = "0.1.0", path = "../../apollo-hyper-api/apollo-hyper-api-interface" }

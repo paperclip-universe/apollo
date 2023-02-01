@@ -12,3 +12,6 @@ libc = "0.2.139"
 libloading = "0.7.4"
 libretro-sys = { git = "https://github.com/Sinono3/libretro-sys", branch = "variadic_printf" }
 printf-compat = "0.1.1"
+libloading = "0.7.4"
+libretro-sys = { git = "https://github.com/Sinono3/libretro-sys", branch = "variadic_printf" }
+printf-compat = "0.1.1"

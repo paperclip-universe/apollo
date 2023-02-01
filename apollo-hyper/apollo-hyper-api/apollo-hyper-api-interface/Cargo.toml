@@ -10,3 +10,6 @@ apollo-hyper-libretro-bindings = { version = "0.1.0", path = "../../apollo-hyper
 [features]
 default = ["libretro"]
 libretro = ["dep:apollo-hyper-libretro-bindings"]
+[features]
+default = ["libretro"]
+libretro = ["dep:apollo-hyper-libretro-bindings"]
