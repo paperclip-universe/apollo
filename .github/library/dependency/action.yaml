@@ -13,18 +13,19 @@ runs:
         sudo gem install apt-spy2
         sudo apt-spy2 check
         sudo apt-spy2 fix
-        sudo apt-get install freeglut3-dev
+        sudo apt-get install freeglut3-dev nasm
       name: Install Ubuntu dependencies
       shell: bash
       if: startsWith(inputs.system, 'ubuntu')
 
-    # - name: Set up Homebrew
-    #   uses: Homebrew/actions/setup-homebrew@master
-    #   if: startsWith(inputs.system, 'macos')
-    # - run: |
-    #   name: Install MacOS dependencies
-    #   shell: bash
-    #   if: startsWith(inputs.system, 'macos')
+    - name: Set up Homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+      if: startsWith(inputs.system, 'macos')
+    - run: |
+        brew install nasm
+      name: Install MacOS dependencies
+      shell: bash
+      if: startsWith(inputs.system, 'macos')
 
     - name: Install 7zip
       uses: crazy-max/ghaction-chocolatey@v2
