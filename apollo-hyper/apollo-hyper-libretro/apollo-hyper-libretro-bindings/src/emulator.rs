@@ -1,8 +1,8 @@
 use crate::{buttons::InputPort, error::*};
 use apollo_hyper_api_standard::{ApolloEmulator, ApolloMultiEmulator};
+use apollo_hyper_libretro_sys::*;
 use libc::c_char;
 use libloading::{Library, Symbol};
-use libretro_sys::*;
 use std::{
     ffi::{c_void, CStr, CString},
     fs::File,
