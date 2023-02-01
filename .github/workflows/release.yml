@@ -21,7 +21,12 @@ jobs:
           fetch-depth: 0
 
       - run: rustup toolchain install stable --profile minimal --no-self-update
-
+      - name: Update CHANGELOG
+        id: changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.event.inputs.version }}
       - name: Prepare release
         uses: getsentry/action-prepare-release@v1
         env:
