@@ -159,7 +159,7 @@ fn create_core(core_path: &Path) -> (Box<Library>, CoreAPI) {
 
 impl ApolloMultiEmulator for MultiEmulator {
     // FIXME Move some of this logic to Emulator::boot
-    fn create_emulator(core_path: &Path, rom_path: &Path) -> Emulator {
+    fn create_emulator(core_path: &Path, rom_path: &Path) -> Box<dyn ApolloEmulator> {
         unsafe {
             assert!(EMULATOR.is_null());
             assert!(CONTEXT.is_null());
@@ -246,11 +246,11 @@ impl ApolloMultiEmulator for MultiEmulator {
             (core.retro_get_system_info)(&mut system_info);
             (core.retro_get_system_av_info)(&mut system_av_info);
 
-            Emulator {
+            Box::new(Emulator {
                 phantom: PhantomData,
                 system_info,
                 system_av_info,
-            }
+            })
         }
     }
 }
