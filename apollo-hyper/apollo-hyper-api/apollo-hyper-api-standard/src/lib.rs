@@ -1,9 +1,9 @@
-#![allow(incomplete_features)]
-#![feature(return_position_impl_trait_in_trait)]
+// #![allow(incomplete_features)]
+// #![feature(return_position_impl_trait_in_trait)]
 use std::path::Path;
 
 pub trait ApolloMultiEmulator {
-    fn create_emulator(core_path: &Path, rom_path: &Path) -> impl ApolloEmulator;
+    fn create_emulator(core_path: &Path, rom_path: &Path) -> Box<dyn ApolloEmulator>; //impl ApolloEmulator;
 }
 
 pub trait ApolloEmulator {
