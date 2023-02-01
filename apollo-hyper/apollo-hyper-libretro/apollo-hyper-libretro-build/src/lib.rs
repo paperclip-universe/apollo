@@ -109,6 +109,7 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
         }
     } else {
         assert_cli("make");
+        assert_cli("nasm");
 
         let output = Command::new("make")
             .args([
@@ -127,10 +128,9 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
             .wait_with_output()
             .expect("The child could not be invoked!");
         if !out.status.success() {
-            println!("cargo:warning=Command did not exit successfuly!");
             println!(
-                "{:?}",
-                format!("cargo:warning={}", env::var("CARGO_PKG_NAME").unwrap())
+                "cargo:warning={} did not build successfully!",
+                env::var("CARGO_PKG_NAME").unwrap()
             );
             println!("cargo:rustc-env=COREPATH=none");
             return;
