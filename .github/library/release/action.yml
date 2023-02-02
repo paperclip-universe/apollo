@@ -1,0 +1,5 @@
+name: 'Release'
+description: 'paperclip-universe custom release script'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
