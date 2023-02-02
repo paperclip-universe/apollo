@@ -76,7 +76,7 @@ pub const API_VERSION: libc::c_uint = 1;
 // correctly to arbitrary controller layouts.
 
 pub const DEVICE_TYPE_SHIFT: libc::c_uint = 8;
-pub const DEVICE_MASK: libc::c_uint = ((1 << DEVICE_TYPE_SHIFT) - 1);
+pub const DEVICE_MASK: libc::c_uint = (1 << DEVICE_TYPE_SHIFT) - 1;
 // TODO: Insert DEVICE_SUBCLASS here
 
 // Input disabled.
@@ -673,7 +673,7 @@ pub const ENVIRONMENT_GET_INPUT_DEVICE_CAPABILITIES: libc::c_uint = 24;
 // enabling/disable it entirely, etc.
 // Reading sensor state is done via the normal
 // input_state_callback API.
-pub const ENVIRONMENT_GET_SENSOR_INTERFACE: libc::c_uint = (25 | ENVIRONMENT_EXPERIMENTAL);
+pub const ENVIRONMENT_GET_SENSOR_INTERFACE: libc::c_uint = 25 | ENVIRONMENT_EXPERIMENTAL;
 
 // struct CameraCallback * --
 // Gets an interface to a video camera driver.
@@ -699,7 +699,7 @@ pub const ENVIRONMENT_GET_SENSOR_INTERFACE: libc::c_uint = (25 | ENVIRONMENT_EXP
 // functions must be used to explicitly
 // start and stop the camera driver.
 //
-pub const ENVIRONMENT_GET_CAMERA_INTERFACE: libc::c_uint = (26 | ENVIRONMENT_EXPERIMENTAL);
+pub const ENVIRONMENT_GET_CAMERA_INTERFACE: libc::c_uint = 26 | ENVIRONMENT_EXPERIMENTAL;
 
 // struct LogCallback * --
 // Gets an interface for logging. This is useful for
@@ -844,7 +844,7 @@ pub const ENVIRONMENT_SET_CONTROLLER_INFO: libc::c_uint = 35;
 // retro_get_memory_* as well.
 //
 // Can be called from retro_init and retro_load_game.
-pub const ENVIRONMENT_SET_MEMORY_MAPS: libc::c_uint = (36 | ENVIRONMENT_EXPERIMENTAL);
+pub const ENVIRONMENT_SET_MEMORY_MAPS: libc::c_uint = 36 | ENVIRONMENT_EXPERIMENTAL;
 
 // const struct GameGeometry * --
 // This environment call is similar to SET_SYSTEM_AV_INFO for changing
@@ -908,7 +908,7 @@ pub const ENVIRONMENT_GET_LANGUAGE: libc::c_uint = 39;
 // A frontend must make sure that the pointer obtained from this function is
 // writeable (and readable).
 pub const ENVIRONMENT_GET_CURRENT_SOFTWARE_FRAMEBUFFER: libc::c_uint =
-    (40 | ENVIRONMENT_EXPERIMENTAL);
+    40 | ENVIRONMENT_EXPERIMENTAL;
 
 define_enum! {
     #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
@@ -937,16 +937,16 @@ pub struct HwRenderInterface {
 // GET_HW_RENDER_INTERFACE cannot be called before context_reset has been called.
 // Similarly, after context_destroyed callback returns,
 // the contents of the HW_RENDER_INTERFACE are invalidated.
-pub const ENVIRONMENT_GET_HW_RENDER_INTERFACE: libc::c_uint = (41 | ENVIRONMENT_EXPERIMENTAL);
+pub const ENVIRONMENT_GET_HW_RENDER_INTERFACE: libc::c_uint = 41 | ENVIRONMENT_EXPERIMENTAL;
 
-pub const MEMDESC_CONST: libc::c_uint = (1 << 0); // The frontend will never change this memory area once retro_load_game has returned.
-pub const MEMDESC_BIGENDIAN: libc::c_uint = (1 << 1); // The memory area contains big endian data. Default is little endian.
-pub const MEMDESC_ALIGN_2: libc::c_uint = (1 << 16); // All memory access in this area is aligned to their own size, or 2, whichever is smaller.
-pub const MEMDESC_ALIGN_4: libc::c_uint = (2 << 16);
-pub const MEMDESC_ALIGN_8: libc::c_uint = (3 << 16);
-pub const MEMDESC_MINSIZE_2: libc::c_uint = (1 << 24); // All memory in this region is accessed at least 2 bytes at the time.
-pub const MEMDESC_MINSIZE_4: libc::c_uint = (2 << 24);
-pub const MEMDESC_MINSIZE_8: libc::c_uint = (3 << 24);
+pub const MEMDESC_CONST: libc::c_uint = 1 << 0; // The frontend will never change this memory area once retro_load_game has returned.
+pub const MEMDESC_BIGENDIAN: libc::c_uint = 1 << 1; // The memory area contains big endian data. Default is little endian.
+pub const MEMDESC_ALIGN_2: libc::c_uint = 1 << 16; // All memory access in this area is aligned to their own size, or 2, whichever is smaller.
+pub const MEMDESC_ALIGN_4: libc::c_uint = 2 << 16;
+pub const MEMDESC_ALIGN_8: libc::c_uint = 3 << 16;
+pub const MEMDESC_MINSIZE_2: libc::c_uint = 1 << 24; // All memory in this region is accessed at least 2 bytes at the time.
+pub const MEMDESC_MINSIZE_4: libc::c_uint = 2 << 24;
+pub const MEMDESC_MINSIZE_8: libc::c_uint = 3 << 24;
 
 #[derive(Clone, Debug)]
 #[repr(C)]
@@ -1205,26 +1205,26 @@ pub struct LogCallback {
 // Performance related functions
 
 // ID values for SIMD CPU features
-pub const SIMD_SSE: libc::c_uint = (1 << 0);
-pub const SIMD_SSE2: libc::c_uint = (1 << 1);
-pub const SIMD_VMX: libc::c_uint = (1 << 2);
-pub const SIMD_VMX128: libc::c_uint = (1 << 3);
-pub const SIMD_AVX: libc::c_uint = (1 << 4);
-pub const SIMD_NEON: libc::c_uint = (1 << 5);
-pub const SIMD_SSE3: libc::c_uint = (1 << 6);
-pub const SIMD_SSSE3: libc::c_uint = (1 << 7);
-pub const SIMD_MMX: libc::c_uint = (1 << 8);
-pub const SIMD_MMXEXT: libc::c_uint = (1 << 9);
-pub const SIMD_SSE4: libc::c_uint = (1 << 10);
-pub const SIMD_SSE42: libc::c_uint = (1 << 11);
-pub const SIMD_AVX2: libc::c_uint = (1 << 12);
-pub const SIMD_VFPU: libc::c_uint = (1 << 13);
-pub const SIMD_PS: libc::c_uint = (1 << 14);
-pub const SIMD_AES: libc::c_uint = (1 << 15);
-pub const SIMD_VFPV3: libc::c_uint = (1 << 16);
-pub const SIMD_VFPV4: libc::c_uint = (1 << 17);
-pub const SIMD_POPCNT: libc::c_uint = (1 << 18);
-pub const SIMD_MOVBE: libc::c_uint = (1 << 19);
+pub const SIMD_SSE: libc::c_uint = 1 << 0;
+pub const SIMD_SSE2: libc::c_uint = 1 << 1;
+pub const SIMD_VMX: libc::c_uint = 1 << 2;
+pub const SIMD_VMX128: libc::c_uint = 1 << 3;
+pub const SIMD_AVX: libc::c_uint = 1 << 4;
+pub const SIMD_NEON: libc::c_uint = 1 << 5;
+pub const SIMD_SSE3: libc::c_uint = 1 << 6;
+pub const SIMD_SSSE3: libc::c_uint = 1 << 7;
+pub const SIMD_MMX: libc::c_uint = 1 << 8;
+pub const SIMD_MMXEXT: libc::c_uint = 1 << 9;
+pub const SIMD_SSE4: libc::c_uint = 1 << 10;
+pub const SIMD_SSE42: libc::c_uint = 1 << 11;
+pub const SIMD_AVX2: libc::c_uint = 1 << 12;
+pub const SIMD_VFPU: libc::c_uint = 1 << 13;
+pub const SIMD_PS: libc::c_uint = 1 << 14;
+pub const SIMD_AES: libc::c_uint = 1 << 15;
+pub const SIMD_VFPV3: libc::c_uint = 1 << 16;
+pub const SIMD_VFPV4: libc::c_uint = 1 << 17;
+pub const SIMD_POPCNT: libc::c_uint = 1 << 18;
+pub const SIMD_MOVBE: libc::c_uint = 1 << 19;
 
 pub type PerfTick = u64;
 pub type Time = i64;
@@ -1920,14 +1920,14 @@ pub struct GameInfo {
 }
 
 // The core will write to the buffer provided by retro_framebuffer::data.
-pub const MEMORY_ACCESS_WRITE: libc::c_uint = (1 << 0);
+pub const MEMORY_ACCESS_WRITE: libc::c_uint = 1 << 0;
 
 // The core will read from retro_framebuffer::data.
-pub const MEMORY_ACCESS_READ: libc::c_uint = (1 << 1);
+pub const MEMORY_ACCESS_READ: libc::c_uint = 1 << 1;
 
 // The memory in data is cached.
 // If not cached, random writes and/or reading from the buffer is expected to be very slow.
-pub const MEMORY_TYPE_CACHED: libc::c_uint = (1 << 0);
+pub const MEMORY_TYPE_CACHED: libc::c_uint = 1 << 0;
 
 #[derive(Clone, Debug)]
 #[repr(C)]
