@@ -36,7 +36,7 @@ jobs:
       #     git config --global user.email "release-plz@github.com"
       #     git config --global user.name "release-plz"
       - name: Run release-plz
-        using: ./.github/library/release
+        uses: ./.github/library/release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
