@@ -907,7 +907,8 @@ pub const ENVIRONMENT_GET_LANGUAGE: libc::c_uint = 39;
 //
 // A frontend must make sure that the pointer obtained from this function is
 // writeable (and readable).
-pub const ENVIRONMENT_GET_CURRENT_SOFTWARE_FRAMEBUFFER: libc::c_uint = (40 | ENVIRONMENT_EXPERIMENTAL);
+pub const ENVIRONMENT_GET_CURRENT_SOFTWARE_FRAMEBUFFER: libc::c_uint =
+    (40 | ENVIRONMENT_EXPERIMENTAL);
 
 define_enum! {
     #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug)]
@@ -1328,7 +1329,8 @@ pub const SENSOR_ACCELEROMETER_X: libc::c_uint = 0;
 pub const SENSOR_ACCELEROMETER_Y: libc::c_uint = 1;
 pub const SENSOR_ACCELEROMETER_Z: libc::c_uint = 2;
 
-pub type SetSensorStateFn = unsafe extern "C" fn(port: libc::c_uint, action: SensorAction, rate: libc::c_uint) -> bool;
+pub type SetSensorStateFn =
+    unsafe extern "C" fn(port: libc::c_uint, action: SensorAction, rate: libc::c_uint) -> bool;
 
 pub type SensorGetInputFn = unsafe extern "C" fn(port: libc::c_uint, id: libc::c_uint) -> f32;
 
@@ -1362,8 +1364,12 @@ pub type CameraLifetimeStatusFn = unsafe extern "C" fn();
 // A callback for raw framebuffer data. buffer points to an XRGB8888 buffer.
 // Width, height and pitch are similar to retro_video_refresh_t.
 // First pixel is top-left origin.
-pub type CameraFrameRawFramebufferFn =
-    unsafe extern "C" fn(buffer: *const u32, width: libc::c_uint, height: libc::c_uint, pitch: libc::size_t);
+pub type CameraFrameRawFramebufferFn = unsafe extern "C" fn(
+    buffer: *const u32,
+    width: libc::c_uint,
+    height: libc::c_uint,
+    pitch: libc::size_t,
+);
 
 // A callback for when OpenGL textures are used.
 //
@@ -1382,8 +1388,11 @@ pub type CameraFrameRawFramebufferFn =
 //
 // GL-specific typedefs are avoided here to avoid relying on gl.h in
 // the API definition.
-pub type CameraFrameOpenglTextureFn =
-    unsafe extern "C" fn(texture_id: libc::c_uint, texture_target: libc::c_uint, affine: *const f32);
+pub type CameraFrameOpenglTextureFn = unsafe extern "C" fn(
+    texture_id: libc::c_uint,
+    texture_target: libc::c_uint,
+    affine: *const f32,
+);
 
 #[derive(Clone, Debug)]
 #[repr(C)]
@@ -1427,7 +1436,8 @@ pub struct CameraCallback {
 //
 // interval_ms is the interval expressed in milliseconds.
 // interval_distance is the distance interval expressed in meters.
-pub type LocationSetIntervalFn = unsafe extern "C" fn(interval_ms: libc::c_uint, interval_distance: libc::c_uint);
+pub type LocationSetIntervalFn =
+    unsafe extern "C" fn(interval_ms: libc::c_uint, interval_distance: libc::c_uint);
 
 // Start location services. The device will start listening for changes to the
 // current location at regular intervals (which are defined with
@@ -1440,8 +1450,12 @@ pub type LocationStopFn = unsafe extern "C" fn();
 
 // Get the position of the current location. Will set parameters to
 // 0 if no new  location update has happened since the last time.
-pub type LocationGetPositionFn =
-    unsafe extern "C" fn(lat: *mut f64, lon: *mut f64, horiz_accuracy: *mut f64, vert_accuracy: *mut f64) -> bool;
+pub type LocationGetPositionFn = unsafe extern "C" fn(
+    lat: *mut f64,
+    lon: *mut f64,
+    horiz_accuracy: *mut f64,
+    vert_accuracy: *mut f64,
+) -> bool;
 
 // Callback which signals when the location driver is initialized
 // and/or deinitialized.
@@ -1477,7 +1491,8 @@ define_enum! {
 //
 // Returns true if rumble state request was honored.
 // Calling this before first retro_run() is likely to return false.
-pub type SetRumbleStateFn = unsafe extern "C" fn(port: libc::c_uint, effect: RumbleEffect, strength: u16) -> bool;
+pub type SetRumbleStateFn =
+    unsafe extern "C" fn(port: libc::c_uint, effect: RumbleEffect, strength: u16) -> bool;
 
 #[derive(Clone, Debug)]
 #[repr(C)]
@@ -1528,7 +1543,8 @@ pub struct FrameTimeCallback {
 
 // Pass this to retro_video_refresh_t if rendering to hardware.
 // Passing NULL to retro_video_refresh_t is still a frame dupe as normal.
-pub const HW_FRAME_BUFFER_VALID: *const libc::c_void = -1 as libc::intptr_t as usize as *const libc::c_void;
+pub const HW_FRAME_BUFFER_VALID: *const libc::c_void =
+    -1 as libc::intptr_t as usize as *const libc::c_void;
 
 // Invalidates the current HW context.
 // Any GL state is lost, and must not be deinitialized explicitly.
@@ -1718,7 +1734,8 @@ pub type GetNumImagesFn = unsafe extern "C" fn() -> libc::c_uint;
 // E.g. replace_image_index(1, NULL), and previous get_image_index()
 // returned 4 before.
 // Index 1 will be removed, and the new index is 3.
-pub type ReplaceImageIndexFn = unsafe extern "C" fn(index: libc::c_uint, info: *const GameInfo) -> bool;
+pub type ReplaceImageIndexFn =
+    unsafe extern "C" fn(index: libc::c_uint, info: *const GameInfo) -> bool;
 
 // Adds a new valid index (get_num_images()) to the internal disk list.
 // This will increment subsequent return values from get_num_images() by 1.
@@ -1959,8 +1976,12 @@ pub type EnvironmentFn = unsafe extern "C" fn(cmd: libc::c_uint, data: *mut libc
 // that is packed in memory, i.e. pitch == width * byte_per_pixel.
 // Certain graphic APIs, such as OpenGL ES, do not like textures
 // that are not packed in memory.
-pub type VideoRefreshFn =
-    unsafe extern "C" fn(data: *const libc::c_void, width: libc::c_uint, height: libc::c_uint, pitch: libc::size_t);
+pub type VideoRefreshFn = unsafe extern "C" fn(
+    data: *const libc::c_void,
+    width: libc::c_uint,
+    height: libc::c_uint,
+    pitch: libc::size_t,
+);
 
 // Renders a single audio frame. Should only be used if implementation
 // generates a single sample at a time.
@@ -1972,7 +1993,8 @@ pub type AudioSampleFn = unsafe extern "C" fn(left: i16, right: i16);
 // One frame is defined as a sample of left and right channels, interleaved.
 // I.e. int16_t buf[4] = { l, r, l, r }; would be 2 frames.
 // Only one of the audio callbacks must ever be used.
-pub type AudioSampleBatchFn = unsafe extern "C" fn(data: *const i16, frames: libc::size_t) -> libc::size_t;
+pub type AudioSampleBatchFn =
+    unsafe extern "C" fn(data: *const i16, frames: libc::size_t) -> libc::size_t;
 
 // Polls input.
 pub type InputPollFn = unsafe extern "C" fn();
@@ -1983,8 +2005,12 @@ pub type InputPollFn = unsafe extern "C" fn();
 // Specialization of devices such as DEVICE_JOYPAD_MULTITAP that
 // have been set with retro_set_controller_port_device()
 // will still use the higher level DEVICE_JOYPAD to request input.
-pub type InputStateFn =
-    unsafe extern "C" fn(port: libc::c_uint, device: libc::c_uint, index: libc::c_uint, id: libc::c_uint) -> i16;
+pub type InputStateFn = unsafe extern "C" fn(
+    port: libc::c_uint,
+    device: libc::c_uint,
+    index: libc::c_uint,
+    id: libc::c_uint,
+) -> i16;
 
 #[derive(Clone, Debug)]
 pub struct CoreAPI {
@@ -2029,7 +2055,8 @@ pub struct CoreAPI {
     // hint to the libretro core when a core cannot automatically detect the
     // appropriate input device type on its own. It is also relevant when a
     // core can change its behavior depending on device type.
-    pub retro_set_controller_port_device: unsafe extern "C" fn(port: libc::c_uint, device: libc::c_uint),
+    pub retro_set_controller_port_device:
+        unsafe extern "C" fn(port: libc::c_uint, device: libc::c_uint),
 
     // Resets the current game.
     pub retro_reset: unsafe extern "C" fn(),
@@ -2055,16 +2082,22 @@ pub struct CoreAPI {
     // pub retro_serialize_size(), it should return false, true otherwise.
     pub retro_serialize: unsafe extern "C" fn(data: *mut libc::c_void, size: libc::size_t),
 
-    pub retro_unserialize: unsafe extern "C" fn(data: *const libc::c_void, size: libc::size_t) -> bool,
+    pub retro_unserialize:
+        unsafe extern "C" fn(data: *const libc::c_void, size: libc::size_t) -> bool,
     pub retro_cheat_reset: unsafe extern "C" fn(),
-    pub retro_cheat_set: unsafe extern "C" fn(index: libc::c_uint, enabled: bool, code: *const libc::c_char),
+    pub retro_cheat_set:
+        unsafe extern "C" fn(index: libc::c_uint, enabled: bool, code: *const libc::c_char),
 
     // Loads a game.
     pub retro_load_game: unsafe extern "C" fn(game: *const GameInfo) -> bool,
 
     // Loads a "special" kind of game. Should not be used,
     // except in extreme cases.
-    pub retro_load_game_special: unsafe extern "C" fn(game_type: libc::c_uint, info: *const GameInfo, num_info: libc::size_t) -> bool,
+    pub retro_load_game_special: unsafe extern "C" fn(
+        game_type: libc::c_uint,
+        info: *const GameInfo,
+        num_info: libc::size_t,
+    ) -> bool,
 
     // Unloads a currently loaded game.
     pub retro_unload_game: unsafe extern "C" fn(),
