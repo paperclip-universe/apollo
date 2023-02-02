@@ -5,7 +5,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-apollo-hyper-libretro-bindings = { version = "0.1.0", path = "../../apollo-hyper-libretro/apollo-hyper-libretro-bindings", optional = true }
+apollo-hyper-libretro-bindings = { version = "0.1.1", path = "../../apollo-hyper-libretro/apollo-hyper-libretro-bindings", optional = true }
 
 [features]
 default = ["libretro"]

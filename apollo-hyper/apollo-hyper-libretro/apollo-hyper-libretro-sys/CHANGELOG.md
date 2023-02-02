@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2](https://github.com/paperclip-universe/apollo/compare/apollo-hyper-libretro-sys-v0.1.1...apollo-hyper-libretro-sys-v0.1.2) - 2023-02-02
+
+### Other
+- release (#72)
+- *(clippy)* :lipstick: fix clippy warnings
+- [create-pull-request] automated change (#71)
+
 ## [0.1.1](https://github.com/paperclip-universe/apollo/releases/tag/apollo-hyper-libretro-sys-v0.1.1) - 2023-02-02
 
 ### Other
