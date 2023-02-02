@@ -3,7 +3,7 @@
 apt-get -y update
 apt-get -y install \
     curl git \
-    nasm make
+    nasm make gcc
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain nightly -y
 . "$HOME/.cargo/env"
