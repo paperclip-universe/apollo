@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Joseph C. Osborn <joseph.osborn@pomona.edu>", "Wyatt Stanke"]
 edition = "2021"
 license = "Apache-2.0"
+description = "Bindings from libretro to Rust"
 
 [dependencies]
 apollo-hyper-api-standard = { version = "0.1.0", path = "../../apollo-hyper-api/apollo-hyper-api-standard" }
