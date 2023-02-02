@@ -1,4 +1,4 @@
-FROM rustlang/rust:nightly
+FROM debian:latest
 
 COPY entrypoint.sh /entrypoint.sh
 
