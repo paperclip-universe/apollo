@@ -6,6 +6,7 @@ apt-get -y install \
     nasm make
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain nightly -y
+source "$HOME/.cargo/env"
 
 cargo install release-plz
 git config --global user.email "release-plz@github.com"
