@@ -2,6 +2,8 @@
 name = "apollo-hyper-libretro-core-o2em"
 license = "Unlicense"
 description = "TODO: Add description"
+license = "Unlicense"
+description = "TODO: Add description"
 repository = "https://github.com/paperclip-universe/apollo"
 version = "0.1.0"
 edition = "2021"

@@ -9,3 +9,5 @@ edition = "2021"
 
 [build-dependencies]
 apollo-hyper-libretro-build = { version = "0.1.0", path = "../../apollo-hyper-libretro/apollo-hyper-libretro-build" }
+[build-dependencies]
+apollo-hyper-libretro-build = { version = "0.1.0", path = "../../apollo-hyper-libretro/apollo-hyper-libretro-build" }

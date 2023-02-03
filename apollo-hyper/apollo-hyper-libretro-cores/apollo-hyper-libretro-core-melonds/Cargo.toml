@@ -1,5 +1,7 @@
 [package]
 name = "apollo-hyper-libretro-core-melonds"
+license = "Unlicense"
+description = "TODO: Add description"
 version = "0.1.0"
 edition = "2021"
 
