@@ -1,6 +1,6 @@
 [package]
 name = "apollo-hyper-libretro-sys"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Jan Bujak <j@exia.io>", "Wyatt-Stanke"]
 license = "MIT"
 readme = "README.md"
