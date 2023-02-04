@@ -14,4 +14,6 @@ git config --global user.name "release-plz"
 release-plz release-pr \
     --git-token "$GITHUB_TOKEN" \
     --repo-url "https://github.com/paperclip-universe/apollo"
-release-plz release
+release-plz release \
+    --git-token "$GITHUB_TOKEN" \
+    --git-release
