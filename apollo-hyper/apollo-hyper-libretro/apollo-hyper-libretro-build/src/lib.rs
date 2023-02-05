@@ -1,3 +1,10 @@
+mod build;
+mod clone;
+mod dir;
+
+use build::run_build_cmd;
+use clone::clone_repo;
+use dir::get_out_dir;
 use glob::glob;
 use owo_colors::OwoColorize;
 use std::{
@@ -19,31 +26,38 @@ fn is_program_in_path(program: &str) -> bool {
     false
 }
 
-fn assert_cli(program: &str) {
-    if !is_program_in_path(program) {
-        println!("{}: {program} is not installed!", "error".red().bold());
-        exit(1);
+fn assert_clis(programs: Vec<&str>) {
+    for program in programs {
+        if !is_program_in_path(program) {
+            println!("{}: {program} is not installed!", "error".red().bold());
+            exit(1);
+        }
     }
 }
 
-pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
+pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>, repo: &str) {
+    assert_clis(vec!["git", "patch", "make", "nasm"]);
     let target_os = env::var("TARGET").unwrap();
 
-    glob("./*/build/apollo_libretro*")
-        .unwrap()
-        .filter_map(Result::ok)
-        .map(fs::remove_file)
-        .for_each(drop);
+    clone_repo(repo).unwrap();
 
-    if !Path::new(&format!("./{dir}/build")).exists() {
-        fs::create_dir(format!("./{dir}/build")).unwrap();
+    glob(
+        get_out_dir()
+            .join("/*/build/apollo_libretro*")
+            .to_str()
+            .unwrap(),
+    )
+    .unwrap()
+    .filter_map(Result::ok)
+    .map(fs::remove_file)
+    .for_each(drop);
+
+    if !get_out_dir().join("build").exists() {
+        fs::create_dir(get_out_dir().join("build")).unwrap();
     }
 
     if target_os.starts_with("wasm") {
-        assert_cli("emmake");
-
         if let Some(patch_file) = patch {
-            assert_cli("git");
             let mut output = Command::new("patch")
                 .args(["-r", "-", "--forward"])
                 .current_dir(format!("./{dir}"))
@@ -62,89 +76,46 @@ pub fn build(dir: &str, patch: Option<&str>, mf: Option<&str>) {
                 drop(stdin)
             }
 
-            let _ = output
+            output
                 .wait_with_output()
                 .expect("The core did not patch successfully!");
         }
 
-        let output = Command::new("emmake")
-            .args([
-                "make",
-                "-j",
-                "-f",
-                match mf {
-                    None => "Makefile",
-                    Some(x) => x,
-                },
-                "platform=emscripten",
-                "TARGET_NAME=build/apollo",
-            ])
-            .current_dir(fs::canonicalize(format!("./{dir}")).unwrap())
-            .spawn()
-            .expect("Make could not be invoked!");
-        let out = output
-            .wait_with_output()
-            .expect("The core did not build successfully!");
-        if !out.status.success() {
-            println!("cargo:warning=Command did not exit successfuly!");
-            println!("cargo:warning=Command: ");
-            println!(
-                "{}",
-                [
-                    "emmake",
-                    "-j",
-                    "-f",
-                    match mf {
-                        Some(x) => x,
-                        None => "Makefile",
-                    },
-                    "TARGET_NAME=build/apollo",
-                ]
-                .into_iter()
-                .map(|x| format!("cargo:warning={x}"))
-                .collect::<String>()
-            );
-            println!("cargo:rustc-env=COREPATH=none");
-            return;
-        }
+        run_build_cmd(Command::new("emmake").args([
+            "make",
+            "-j",
+            "-f",
+            match mf {
+                None => "Makefile",
+                Some(x) => x,
+            },
+            "platform=emscripten",
+            "TARGET_NAME=build/apollo",
+        ]));
     } else {
-        assert_cli("make");
-        assert_cli("nasm");
-
-        let output = Command::new("make")
-            .args([
-                "-j",
-                "-f",
-                match mf {
-                    Some(x) => x,
-                    None => "Makefile",
-                },
-                "TARGET_NAME=build/apollo",
-            ])
-            .current_dir(format!("./{dir}"))
-            .spawn()
-            .expect("Make could not be invoked!");
-        let out = output
-            .wait_with_output()
-            .expect("The child could not be invoked!");
-        if !out.status.success() {
-            println!(
-                "cargo:warning={} did not build successfully!",
-                env::var("CARGO_PKG_NAME").unwrap()
-            );
-            println!("cargo:rustc-env=COREPATH=none");
-            return;
-        }
+        run_build_cmd(Command::new("make").args([
+            "-j",
+            "-f",
+            match mf {
+                Some(x) => x,
+                None => "Makefile",
+            },
+            "TARGET_NAME=build/apollo",
+        ]));
     }
     println!(
         "cargo:rustc-env=COREPATH={}",
         fs::canonicalize(
-            glob(&format!("./{dir}/build/apollo_libretro*"))
-                .unwrap()
-                .filter_map(Result::ok)
-                .collect::<Vec<_>>()
-                .first()
-                .unwrap()
+            glob(
+                get_out_dir()
+                    .join("build/apollo_libretro*")
+                    .to_str()
+                    .unwrap()
+            )
+            .unwrap()
+            .filter_map(Result::ok)
+            .next()
+            .unwrap()
         )
         .expect("oops")
         .to_string_lossy()
