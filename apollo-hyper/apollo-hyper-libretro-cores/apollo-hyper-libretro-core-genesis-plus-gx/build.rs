@@ -5,5 +5,6 @@ fn main() {
         "Genesis-Plus-GX",
         Some("genesis_plus_gx.patch"),
         Some("Makefile.libretro"),
+        "https://github.com/libretro/Genesis-Plus-GX",
     );
 }

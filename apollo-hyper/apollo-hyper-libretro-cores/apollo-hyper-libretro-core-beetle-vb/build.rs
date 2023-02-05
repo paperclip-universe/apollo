@@ -1,5 +1,10 @@
 use apollo_hyper_libretro_build::build;
 
 fn main() {
-    build("beetle-vb-libretro", Some("mednafen_vb.patch"), None);
+    build(
+        "beetle-vb-libretro",
+        Some("mednafen_vb.patch"),
+        None,
+        "https://github.com/libretro/beetle-vb-libretro",
+    );
 }

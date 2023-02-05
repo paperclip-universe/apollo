@@ -5,5 +5,6 @@ fn main() {
         "libretro-vecx",
         Some("vecx.patch"),
         Some("Makefile.libretro"),
+        "https://github.com/libretro/libretro-vecx",
     );
 }
