@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1](https://github.com/paperclip-universe/apollo/compare/apollo-hyper-libretro-core-gearcoleco-v0.1.0...apollo-hyper-libretro-core-gearcoleco-v0.1.1) - 2023-02-14
+
+### Other
+- updated the following local packages: apollo-hyper-libretro-build
+
 ## [0.1.0](https://github.com/paperclip-universe/apollo/releases/tag/apollo-hyper-libretro-core-gearcoleco-v0.1.0) - 2023-02-02
 
 ### Fixed
