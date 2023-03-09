@@ -2,11 +2,11 @@
 name = "apollo-hyper-libretro-core-handy"
 license = "Unlicense"
 description = "TODO: Add description"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 [build-dependencies]
-apollo-hyper-libretro-build = { version = "0.1.0", path = "../../apollo-hyper-libretro/apollo-hyper-libretro-build" }
+apollo-hyper-libretro-build = { version = "0.1.1", path = "../../apollo-hyper-libretro/apollo-hyper-libretro-build" }

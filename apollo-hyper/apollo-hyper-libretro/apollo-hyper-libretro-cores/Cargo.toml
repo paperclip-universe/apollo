@@ -9,17 +9,17 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-apollo-hyper-libretro-core-a5200 = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-a5200" }
-apollo-hyper-libretro-core-beetle-ngb = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-ngb" }
-apollo-hyper-libretro-core-beetle-psx = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-psx" }
-apollo-hyper-libretro-core-beetle-vb = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-vb" }
-apollo-hyper-libretro-core-beetle-wswan = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-wswan" }
-apollo-hyper-libretro-core-freechaf = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-freechaf" }
-apollo-hyper-libretro-core-freeintv = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-freeintv" }
-apollo-hyper-libretro-core-gearcoleco = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-gearcoleco" }
+apollo-hyper-libretro-core-a5200 = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-a5200" }
+apollo-hyper-libretro-core-beetle-ngb = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-ngb" }
+apollo-hyper-libretro-core-beetle-psx = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-psx" }
+apollo-hyper-libretro-core-beetle-vb = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-vb" }
+apollo-hyper-libretro-core-beetle-wswan = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-beetle-wswan" }
+apollo-hyper-libretro-core-freechaf = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-freechaf" }
+apollo-hyper-libretro-core-freeintv = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-freeintv" }
+apollo-hyper-libretro-core-gearcoleco = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-gearcoleco" }
 apollo-hyper-libretro-core-genesis-plus-gx = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-genesis-plus-gx" }
 apollo-hyper-libretro-core-mgba = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-mgba" }
-apollo-hyper-libretro-core-handy = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-handy" }
+apollo-hyper-libretro-core-handy = { version = "0.1.1", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-handy" }
 apollo-hyper-libretro-core-melonds = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-melonds" }
 apollo-hyper-libretro-core-mupen64plus-next = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-mupen64plus-next" }
 apollo-hyper-libretro-core-neocd = { version = "0.1.0", path = "../../apollo-hyper-libretro-cores/apollo-hyper-libretro-core-neocd" }
