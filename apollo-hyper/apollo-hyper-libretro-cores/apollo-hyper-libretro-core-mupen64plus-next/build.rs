@@ -5,5 +5,6 @@ fn main() {
         "mupen64plus-libretro-nx",
         Some("mupen64plus_next.patch"),
         None,
+        "https://github.com/libretro/mupen64plus-libretro-nx",
     );
 }

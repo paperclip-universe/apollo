@@ -5,5 +5,6 @@ fn main() {
         "Gearcoleco/platforms/libretro",
         Some("gearcoleco.patch"),
         None,
+        "https://github.com/drhelius/Gearcoleco",
     );
 }
