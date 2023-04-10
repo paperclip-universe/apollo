@@ -17,6 +17,7 @@ struct CloneState {
     current: usize,
     path: Option<PathBuf>,
     newline: bool,
+    tick: usize,
 }
 
 pub fn clone_repo(repo: &str) -> Result<()> {
@@ -64,6 +65,12 @@ pub fn clone_repo(repo: &str) -> Result<()> {
 }
 
 fn log(state: &mut CloneState) {
+    state.tick += 1;
+
+    if state.tick % 1000 != 0 {
+        return;
+    }
+
     let stats = state.progress.as_ref().unwrap();
     let network_pct = (100 * stats.received_objects()) / stats.total_objects();
     let index_pct = (100 * stats.indexed_objects()) / stats.total_objects();
